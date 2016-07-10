@@ -14,7 +14,7 @@ class MaterialImpactManager extends MonoBehaviour {
 	private static var dict : System.Collections.Generic.Dictionary.<PhysicMaterial, MaterialImpact>;
 	private static var defaultMat : MaterialImpact;
 	
-	function Awake () {
+	function Awake () {		
 		defaultMat = materials[0];
 		
 		dict = new System.Collections.Generic.Dictionary.<PhysicMaterial, MaterialImpact> ();

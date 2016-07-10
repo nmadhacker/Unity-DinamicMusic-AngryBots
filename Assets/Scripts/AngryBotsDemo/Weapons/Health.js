@@ -23,6 +23,11 @@ private var damageEffectCenterYOffset : float;
 
 private var colliderRadiusHeuristic : float = 1.0;
 
+function SetHealthValue(newHp : int)
+{
+	health = newHp;
+	SendMessage("SetCurrentHp",health,SendMessageOptions.DontRequireReceiver);
+}
 
 function Awake () {
 	enabled = false;
@@ -36,12 +41,13 @@ function Awake () {
 		var tempSize : Vector2 = Vector2(GetComponent.<Collider>().bounds.extents.x,GetComponent.<Collider>().bounds.extents.z);
 		colliderRadiusHeuristic = tempSize.magnitude * 0.5;
 		damageEffectCenterYOffset = GetComponent.<Collider>().bounds.extents.y;
-
 	}
 	if (scorchMarkPrefab) {
 		scorchMark = GameObject.Instantiate(scorchMarkPrefab, Vector3.zero, Quaternion.identity);
 		scorchMark.SetActive (false);
 	}
+
+	SendMessage("SetMaxHp",maxHealth,SendMessageOptions.DontRequireReceiver);
 }
 
 function OnDamage (amount : float, fromDirection : Vector3) {
@@ -65,7 +71,7 @@ function OnDamage (amount : float, fromDirection : Vector3) {
 	#endif
 	*/
 
-	health -= amount;
+	SetHealthValue(health - amount);
 	damageSignals.SendSignals (this);
 	lastDamageTime = Time.time;
 
@@ -94,7 +100,7 @@ function OnDamage (amount : float, fromDirection : Vector3) {
 	{
 		GameScore.RegisterDeath (gameObject);
 
-		health = 0;
+		SetHealthValue(0);
 		dead = true;
 		dieSignals.SendSignals (this);
 		enabled = false;
@@ -123,12 +129,11 @@ function Regenerate () {
 	if (regenerateSpeed > 0.0f) {
 		while (enabled) {
 			if (Time.time > lastDamageTime + 3) {
-				health += regenerateSpeed;
-
+				SetHealthValue (health + regenerateSpeed);
 				yield;
 
 				if (health >= maxHealth) {
-					health = maxHealth;
+					SetHealthValue(maxHealth);
 					enabled = false;
 				}
 			}

@@ -9,6 +9,7 @@ public var behaviourOnLostTrack : MonoBehaviour;
 private var character : Transform;
 private var player : Transform;
 private var insideInterestArea : boolean = true;
+var wwiseReceiver : GameObject;
 
 function Awake () {
 	character = transform;
@@ -41,7 +42,9 @@ function OnSpotted () {
 	if (!behaviourOnSpotted.enabled) {
 		behaviourOnSpotted.enabled = true;
 		behaviourOnLostTrack.enabled = false;
-		
+
+		wwiseReceiver.SendMessage("OnPlay");
+
 		if (GetComponent.<AudioSource>() && soundOnSpotted) {
 			GetComponent.<AudioSource>().clip = soundOnSpotted;
 			GetComponent.<AudioSource>().Play ();

@@ -7,6 +7,7 @@ var fireSound : AudioClip;
 var firing : boolean = false;
 
 private var lastFireTime : float = -1;
+var wwiseReceiver : GameObject;
 
 function Update () {
 	if (firing) {
@@ -21,6 +22,8 @@ function Fire () {
 	var coneRandomRotation = Quaternion.Euler (Random.Range (-coneAngle, coneAngle), Random.Range (-coneAngle, coneAngle), 0);
 	Spawner.Spawn (bulletPrefab, transform.position, transform.rotation * coneRandomRotation);
 	
+	wwiseReceiver.SendMessage("OnPlay",SendMessageOptions.DontRequireReceiver);
+
 	if (GetComponent.<AudioSource>() && fireSound) {
 		GetComponent.<AudioSource>().clip = fireSound;
 		GetComponent.<AudioSource>().Play ();

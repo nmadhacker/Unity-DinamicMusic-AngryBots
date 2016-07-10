@@ -16,6 +16,8 @@ var muzzleFlashFront : GameObject;
 private var lastFireTime : float = -1;
 private var raycast : PerFrameRaycast;
 
+var receiver : GameObject;
+
 function Awake () {
 	muzzleFlashFront.SetActive (false);
 
@@ -73,6 +75,8 @@ function OnStartFire () {
 
 	muzzleFlashFront.SetActive (true);
 
+	receiver.SendMessage("OnPlay",SendMessageOptions.DontRequireReceiver);
+
 	if (GetComponent.<AudioSource>())
 		GetComponent.<AudioSource>().Play ();
 }
@@ -81,6 +85,8 @@ function OnStopFire () {
 	firing = false;
 
 	muzzleFlashFront.SetActive (false);
+
+	receiver.SendMessage("OnStop",SendMessageOptions.DontRequireReceiver);
 
 	if (GetComponent.<AudioSource>())
 		GetComponent.<AudioSource>().Stop ();

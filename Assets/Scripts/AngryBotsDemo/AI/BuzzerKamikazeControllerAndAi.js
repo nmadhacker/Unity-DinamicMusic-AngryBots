@@ -16,6 +16,8 @@ private var rechargeTimer : float = 1.0f;
 private var audioSource : AudioSource;
 private var zapNoise : Vector3 = Vector3.zero;
 
+var wwiseReceiver : GameObject;
+
 function Awake () {
 	character = motor.transform;
 	player = GameObject.FindWithTag ("Player").transform;
@@ -63,6 +65,8 @@ function DoElectricArc () {
 		return;
 	// Play attack sound
 	
+	wwiseReceiver.SendMessage("OnPlay");
+
 	audioSource.clip = zapSound;
 	audioSource.Play ();
 	//buzz.didChargeEffect = false;
