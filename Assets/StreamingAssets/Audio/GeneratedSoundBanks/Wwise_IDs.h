@@ -15,6 +15,7 @@ namespace AK
     {
         static const AkUniqueID ALERTSFXPLAY = 514204912U;
         static const AkUniqueID ALERTSFXSTOP = 3116077202U;
+        static const AkUniqueID DEATHSFXPLAY = 768230400U;
         static const AkUniqueID PLAY_MECH_FOOTSTEP = 1878728290U;
         static const AkUniqueID PLAY_MECHSPIDER_FOOTSTEP = 1752031927U;
         static const AkUniqueID PLAY_PLAYER_FOOTSTEP = 1724675634U;
