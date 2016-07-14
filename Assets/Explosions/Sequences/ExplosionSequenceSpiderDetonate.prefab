@@ -10,6 +10,8 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   - 82: {fileID: 8200000}
+  - 114: {fileID: 11449696}
+  - 114: {fileID: 11455190}
   m_Layer: 0
   m_Name: ExplosionSequenceSpiderDetonate
   m_TagString: Untagged
@@ -160,6 +162,45 @@ MonoBehaviour:
 --- !u!1002 &11400001
 EditorExtensionImpl:
   serializedVersion: 6
+--- !u!114 &11449696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ac972736c013c44bff440d9a1d0d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: ae8d9d44
+  useOtherObject: 0
+  groupGuid: ad7c6eca8c36de459be7d68fa709c0a2
+  valueGuid: 0bb24a75eb9d9a42b138c222069666d9
+  groupID: 882171616
+  valueID: 1016990062
+--- !u!114 &11455190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e2b7b73d186ca4f93c01bf1401c16c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  valueGuid: db2676094556ca4a87c49bbcde0c2fcc
+  eventID: 788587795
+  soundEmitterObject: {fileID: 0}
+  enableActionOnEvent: 0
+  actionOnEventType: 0
+  curveInterpolation: 4
+  transitionDuration: 0
+  m_callbackData: {fileID: 0}
+  playingId: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

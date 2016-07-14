@@ -7,6 +7,7 @@ var lengthWithoutTrailing : float = 0;
 
 private var back : boolean = false;
 private var normalizedTime : float = 0;
+var wwiseReceiver : GameObject;
 
 function Awake () {
 	if (!audioSource && GetComponent.<AudioSource>())
@@ -15,27 +16,18 @@ function Awake () {
 		lengthWithoutTrailing = Mathf.Min (sound.length, soundReverse.length);
 }
 
-function OnSignal () {
-	FixTime ();
-	
+function OnSignal () {		
 	PlayWithDirection ();
 }
 
-function OnPlay () {
-	FixTime ();
-	
+function OnPlay () {	
 	// Set the speed to be positive
 	back = false;
-	
 	PlayWithDirection ();
 }
 
-function OnPlayReverse () {
-	FixTime ();
-	
-	// Set the speed to be negative
+function OnPlayReverse () {			
 	back = true;
-	
 	PlayWithDirection ();
 }
 
@@ -51,19 +43,15 @@ private function PlayWithDirection () {
 		audioSource.clip = sound;
 		playbackTime = normalizedTime * lengthWithoutTrailing;
 	}
+
+	if (wwiseReceiver != null)
+	{
+		if (!back){ wwiseReceiver.SendMessage("OnPlay"); }
+		else { wwiseReceiver.SendMessage("OnStop"); }
+	}
 	
-	audioSource.time = playbackTime;
-	audioSource.Play ();
+	//audioSource.time = playbackTime;
+	//audioSource.Play ();
 	
 	back = !back;
-}
-
-private function FixTime () {
-	if (audioSource.clip) {
-		normalizedTime = 1.0;
-		if (audioSource.isPlaying)
-			normalizedTime = Mathf.Clamp01 (audioSource.time / lengthWithoutTrailing);
-		if (audioSource.clip == soundReverse)
-			normalizedTime = 1 - normalizedTime;
-	}
 }

@@ -16,8 +16,8 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{12FB9563-18E9-4A6C-8237-06B6B2AE4F28}'
-    m_lastTimePsrt1: -416605163
-    m_lastTimePart2: -1999394681
+    m_lastTimePsrt1: -2069218962
+    m_lastTimePart2: -1999393888
     List:
     - Name: AlertSfxPlay
       Path: Default Work Unit\AlertSfxPlay
@@ -28,7 +28,7 @@ MonoBehaviour:
         ObjectType: 3
       ID: 514204912
       Guid: 757310943fa30347a49c521821582d95
-      maxAttenuation: 0
+      maxAttenuation: 100
     - Name: AlertSfxStop
       Path: Default Work Unit\AlertSfxStop
       PathAndIcons:
@@ -38,16 +38,6 @@ MonoBehaviour:
         ObjectType: 3
       ID: -1178890094
       Guid: 8ec9552a21c88c4e85e674b62b8e215e
-      maxAttenuation: 0
-    - Name: DeathSfxPlay
-      Path: Default Work Unit\DeathSfxPlay
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: DeathSfxPlay
-        ObjectType: 3
-      ID: 768230400
-      Guid: db2676094556ca4a87c49bbcde0c2fcc
       maxAttenuation: 0
     - Name: Play_Mech_Footstep
       Path: Default Work Unit\Play_Mech_Footstep
@@ -68,7 +58,7 @@ MonoBehaviour:
         ObjectType: 3
       ID: 1752031927
       Guid: 67f8faf82a4ef144883573c45e0884c8
-      maxAttenuation: 0
+      maxAttenuation: 100
     - Name: Play_Player_Footstep
       Path: Default Work Unit\Play_Player_Footstep
       PathAndIcons:
@@ -78,6 +68,56 @@ MonoBehaviour:
         ObjectType: 3
       ID: 1724675634
       Guid: 7a9521b06e2d1446a52c9947575f2147
+      maxAttenuation: 0
+    - Name: PlayBulletHitSfx
+      Path: Default Work Unit\PlayBulletHitSfx
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: PlayBulletHitSfx
+        ObjectType: 3
+      ID: -383239581
+      Guid: 3bb6d9a10748e740b4358e167c2e53f9
+      maxAttenuation: 0
+    - Name: PlayCharacterDeadSfx
+      Path: Default Work Unit\PlayCharacterDeadSfx
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: PlayCharacterDeadSfx
+        ObjectType: 3
+      ID: 788587795
+      Guid: db2676094556ca4a87c49bbcde0c2fcc
+      maxAttenuation: 0
+    - Name: PlayCharacterHitSfx
+      Path: Default Work Unit\PlayCharacterHitSfx
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: PlayCharacterHitSfx
+        ObjectType: 3
+      ID: 824711836
+      Guid: 0a467d606586b04992b0766eb1e8e782
+      maxAttenuation: 0
+    - Name: PlayDoorClosing
+      Path: Default Work Unit\PlayDoorClosing
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: PlayDoorClosing
+        ObjectType: 3
+      ID: -67212712
+      Guid: 20c45801dd32b94fad2e937366dbc3cb
+      maxAttenuation: 0
+    - Name: PlayDoorOpening
+      Path: Default Work Unit\PlayDoorOpening
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: PlayDoorOpening
+        ObjectType: 3
+      ID: 1667878897
+      Guid: ee5c43e1899c9348ab237467203de1d9
       maxAttenuation: 0
     - Name: PlayStartMusic
       Path: Default Work Unit\PlayStartMusic
@@ -113,15 +153,15 @@ MonoBehaviour:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{D6D71135-305E-4E25-890C-A67BC768CA67}'
-    m_lastTimePsrt1: -1071352448
-    m_lastTimePart2: -1999395536
+    m_lastTimePsrt1: -2068566822
+    m_lastTimePart2: -1999393888
     List: []
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{F7E31562-96B9-4FD2-8C83-5B5E4421B622}'
-    m_lastTimePsrt1: 377023488
-    m_lastTimePart2: -1999395126
+    m_lastTimePsrt1: -2069149001
+    m_lastTimePart2: -1999393888
     List:
     - Name: MusicState
       Path: Default Work Unit\MusicState
@@ -156,9 +196,34 @@ MonoBehaviour:
   - PhysicalPath: Switches\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{A2CD2D53-3ADD-4B64-942D-F4F7CC359329}'
-    m_lastTimePsrt1: 1809404311
-    m_lastTimePart2: -1999394688
+    m_lastTimePsrt1: -2068171132
+    m_lastTimePart2: -1999393888
     List:
+    - Name: DoorType
+      Path: Default Work Unit\DoorType
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: DoorType
+        ObjectType: 11
+      ID: 1569636917
+      Guid: c3d88d1ad717f04eb5ca26c4be662418
+      values:
+      - AirLock
+      - Locked
+      - Normal
+      ValueIcons:
+      - ElementName: AirLock
+        ObjectType: 10
+      - ElementName: Locked
+        ObjectType: 10
+      - ElementName: Normal
+        ObjectType: 10
+      valueIDs: dab08be823a1290898c42745
+      ValueGuids:
+      - bytes: 2ceb0b6bf6ae1f428de76044e5c42d0f
+      - bytes: 78783486360738428622ff6ba571d2b9
+      - bytes: cbe7750d70713a488025d8e2aa749406
     - Name: EntityType
       Path: Default Work Unit\EntityType
       PathAndIcons:
@@ -188,14 +253,14 @@ MonoBehaviour:
       - bytes: 2a5c33fadc8b014292091b5f59b60cea
       - bytes: a5e9a03242ea1c43a3fd73fb33f60bbe
       - bytes: 0bb24a75eb9d9a42b138c222069666d9
-    - Name: Footstep_Material
-      Path: Default Work Unit\Footstep_Material
+    - Name: Material
+      Path: Default Work Unit\Material
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Footstep_Material
+      - ElementName: Material
         ObjectType: 11
-      ID: 684570577
+      ID: -429652670
       Guid: 9a233ff494940d40a1f910449c73af7e
       values:
       - CatWalk
@@ -246,8 +311,8 @@ MonoBehaviour:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{3DF7DEEA-734F-4D73-B936-F06C0F205B7F}'
-    m_lastTimePsrt1: 603784732
-    m_lastTimePart2: -1999394679
+    m_lastTimePsrt1: -2068075760
+    m_lastTimePart2: -1999393888
     List:
     - Name: InitialSoundBank
       Path: Default Work Unit\InitialSoundBank

@@ -68,14 +68,14 @@ public class WwiseMaterialImpactManager : MonoBehaviour
 	{
 		string eventKey = GetEntityEventKey(footType);
 		string switchKey = GeFootsteptMaterialImpact(mat);
-		AkSoundEngine.SetSwitch("Footstep_material",switchKey,source);
+		AkSoundEngine.SetSwitch("material",switchKey,source);
 		AkSoundEngine.PostEvent(eventKey,source);
 	}
 
 	public static void TriggerBulletHitSound(PhysicMaterial mat, GameObject source)
 	{
 		string switchKey = GetBulletImpactMaterialImpact(mat);
-		AkSoundEngine.SetSwitch("bullethit_material",switchKey,source);
+		AkSoundEngine.SetSwitch("material",switchKey,source);
 		AkSoundEngine.PostEvent(static_bulletHitEventKey,source);
 	}
 

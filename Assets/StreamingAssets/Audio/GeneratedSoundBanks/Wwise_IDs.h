@@ -15,10 +15,14 @@ namespace AK
     {
         static const AkUniqueID ALERTSFXPLAY = 514204912U;
         static const AkUniqueID ALERTSFXSTOP = 3116077202U;
-        static const AkUniqueID DEATHSFXPLAY = 768230400U;
         static const AkUniqueID PLAY_MECH_FOOTSTEP = 1878728290U;
         static const AkUniqueID PLAY_MECHSPIDER_FOOTSTEP = 1752031927U;
         static const AkUniqueID PLAY_PLAYER_FOOTSTEP = 1724675634U;
+        static const AkUniqueID PLAYBULLETHITSFX = 3911727715U;
+        static const AkUniqueID PLAYCHARACTERDEADSFX = 788587795U;
+        static const AkUniqueID PLAYCHARACTERHITSFX = 824711836U;
+        static const AkUniqueID PLAYDOORCLOSING = 4227754584U;
+        static const AkUniqueID PLAYDOOROPENING = 1667878897U;
         static const AkUniqueID PLAYSTARTMUSIC = 4233978862U;
         static const AkUniqueID WEAPONSFXPLAY = 2410365004U;
         static const AkUniqueID WEAPONSFXSTOP = 85182294U;
@@ -42,6 +46,18 @@ namespace AK
 
     namespace SWITCHES
     {
+        namespace DOORTYPE
+        {
+            static const AkUniqueID GROUP = 1569636917U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID AIRLOCK = 3901468890U;
+                static const AkUniqueID LOCKED = 136945955U;
+                static const AkUniqueID NORMAL = 1160234136U;
+            } // namespace SWITCH
+        } // namespace DOORTYPE
+
         namespace ENTITYTYPE
         {
             static const AkUniqueID GROUP = 882171616U;
@@ -55,9 +71,9 @@ namespace AK
             } // namespace SWITCH
         } // namespace ENTITYTYPE
 
-        namespace FOOTSTEP_MATERIAL
+        namespace MATERIAL
         {
-            static const AkUniqueID GROUP = 684570577U;
+            static const AkUniqueID GROUP = 3865314626U;
 
             namespace SWITCH
             {
@@ -65,7 +81,7 @@ namespace AK
                 static const AkUniqueID ENEMY = 2299321487U;
                 static const AkUniqueID METAL = 2473969246U;
             } // namespace SWITCH
-        } // namespace FOOTSTEP_MATERIAL
+        } // namespace MATERIAL
 
         namespace WEAPONTYPE
         {
