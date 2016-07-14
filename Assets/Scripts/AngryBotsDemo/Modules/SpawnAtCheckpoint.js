@@ -3,11 +3,14 @@
 
 var checkpoint : Transform;
 
+var wwiseReceiver : GameObject;
+
 function OnSignal () {
 	transform.position = checkpoint.position;
 	transform.rotation = checkpoint.rotation;
 	
 	ResetHealthOnAll ();
+	wwiseReceiver.SendMessage("OnPlay");
 }
 
 static function ResetHealthOnAll () {

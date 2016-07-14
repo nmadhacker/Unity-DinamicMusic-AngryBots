@@ -1163,6 +1163,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &161320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 459096}
+  - 114: {fileID: 11461364}
+  m_Layer: 8
+  m_Name: WwiseSpawnEventTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &191394
 GameObject:
   m_ObjectHideFlags: 1
@@ -2202,6 +2218,7 @@ Transform:
   - {fileID: 400006}
   - {fileID: 400014}
   - {fileID: 400114}
+  - {fileID: 459096}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!1002 &400119
@@ -2220,6 +2237,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 400008}
   m_RootOrder: 0
+--- !u!4 &459096
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161320}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 400118}
+  m_RootOrder: 5
 --- !u!4 &459788
 Transform:
   m_ObjectHideFlags: 1
@@ -2806,6 +2836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkpoint: {fileID: 0}
+  wwiseReceiver: {fileID: 161320}
 --- !u!1002 &11400013
 EditorExtensionImpl:
   serializedVersion: 6
@@ -3092,6 +3123,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 778b308a3c28aad42a1e85e48a396c4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11461364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17bc098941633348afa93fc7290617e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchGroup: EntityType
+  switchKey: Player
+  playEvent: PlayRespawnSound
+  stopEvent: 
 --- !u!114 &11465594
 MonoBehaviour:
   m_ObjectHideFlags: 1

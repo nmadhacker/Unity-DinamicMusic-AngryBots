@@ -16,8 +16,8 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{12FB9563-18E9-4A6C-8237-06B6B2AE4F28}'
-    m_lastTimePsrt1: -2069218962
-    m_lastTimePart2: -1999393888
+    m_lastTimePsrt1: -246693114
+    m_lastTimePart2: -1999393871
     List:
     - Name: AlertSfxPlay
       Path: Default Work Unit\AlertSfxPlay
@@ -28,7 +28,7 @@ MonoBehaviour:
         ObjectType: 3
       ID: 514204912
       Guid: 757310943fa30347a49c521821582d95
-      maxAttenuation: 100
+      maxAttenuation: 0
     - Name: AlertSfxStop
       Path: Default Work Unit\AlertSfxStop
       PathAndIcons:
@@ -58,7 +58,7 @@ MonoBehaviour:
         ObjectType: 3
       ID: 1752031927
       Guid: 67f8faf82a4ef144883573c45e0884c8
-      maxAttenuation: 100
+      maxAttenuation: 0
     - Name: Play_Player_Footstep
       Path: Default Work Unit\Play_Player_Footstep
       PathAndIcons:
@@ -68,7 +68,7 @@ MonoBehaviour:
         ObjectType: 3
       ID: 1724675634
       Guid: 7a9521b06e2d1446a52c9947575f2147
-      maxAttenuation: 100
+      maxAttenuation: 0
     - Name: PlayBulletHitSfx
       Path: Default Work Unit\PlayBulletHitSfx
       PathAndIcons:
@@ -118,6 +118,16 @@ MonoBehaviour:
         ObjectType: 3
       ID: 1667878897
       Guid: ee5c43e1899c9348ab237467203de1d9
+      maxAttenuation: 0
+    - Name: PlayRespawnSound
+      Path: Default Work Unit\PlayRespawnSound
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: PlayRespawnSound
+        ObjectType: 3
+      ID: 1077647850
+      Guid: a03f48bd7b9dd547ba465c15f72c0873
       maxAttenuation: 0
     - Name: PlayStartMusic
       Path: Default Work Unit\PlayStartMusic
