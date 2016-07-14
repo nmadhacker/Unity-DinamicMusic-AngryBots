@@ -71,7 +71,7 @@ public class WwiseMaterialImpactManager : MonoBehaviour
 		//AkSoundEngine.SetSwitch("material",switchKey,source);
 		//AkSoundEngine.PostEvent(eventKey,source);
 		// using event for everything!!!
-		string eventName = string.Format("{0}_{1}_{2}",eventKey,"material",switchKey);
+		string eventName = string.Format("{0}_{1}_{2}",eventKey,switchKey,footType.ToString() );
 		AkSoundEngine.PostEvent (eventName, source);
 	}
 
@@ -81,7 +81,7 @@ public class WwiseMaterialImpactManager : MonoBehaviour
 		//AkSoundEngine.SetSwitch("material",switchKey,source);
 		//AkSoundEngine.PostEvent(static_bulletHitEventKey,source);
 		// using event for everything!!!
-		string eventName = string.Format("{0}_{1}_{2}",static_bulletHitEventKey,"material",switchKey);
+		string eventName = string.Format("{0}_{2}",static_bulletHitEventKey,switchKey);
 		AkSoundEngine.PostEvent (eventName, source);
 	}
 
