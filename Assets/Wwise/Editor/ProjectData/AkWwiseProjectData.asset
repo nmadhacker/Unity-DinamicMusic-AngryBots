@@ -325,6 +325,8 @@ MonoBehaviour:
       Guid: ab7026720a22044d9636f2f182a2c22e
   ExpandedItems:
   - /Secciones 01
+  - /Secciones 01/Events
+  - /Secciones 01/Events/Default Work Unit
   m_lastPopulateTimePsrt1: 0
   m_lastPopulateTimePart2: 0
   autoPopulateEnabled: 1
