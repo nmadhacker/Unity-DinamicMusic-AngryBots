@@ -17,6 +17,7 @@ private var lastFireTime : float = -1;
 private var raycast : PerFrameRaycast;
 
 var receiver : GameObject;
+var bulletHitReceiver : GameObject;
 
 function Awake () {
 	muzzleFlashFront.SetActive (false);
@@ -55,8 +56,9 @@ function Update () {
 				}
 
 				// Ricochet sound
-				var sound : AudioClip = MaterialImpactManager.GetBulletHitSound (hitInfo.collider.sharedMaterial);
-				AudioSource.PlayClipAtPoint (sound, hitInfo.point, hitSoundVolume);
+				bulletHitReceiver.SendMessage("SetPhysicsMaterial",hitInfo.collider.sharedMaterial);
+				bulletHitReceiver.SendMessage("SetSource",go);
+				bulletHitReceiver.SendMessage("OnBulletHit");
 
 				bullet.dist = hitInfo.distance;
 			}
@@ -76,9 +78,6 @@ function OnStartFire () {
 	muzzleFlashFront.SetActive (true);
 
 	receiver.SendMessage("OnPlay",SendMessageOptions.DontRequireReceiver);
-
-	if (GetComponent.<AudioSource>())
-		GetComponent.<AudioSource>().Play ();
 }
 
 function OnStopFire () {
@@ -87,7 +86,4 @@ function OnStopFire () {
 	muzzleFlashFront.SetActive (false);
 
 	receiver.SendMessage("OnStop",SendMessageOptions.DontRequireReceiver);
-
-	if (GetComponent.<AudioSource>())
-		GetComponent.<AudioSource>().Stop ();
 }

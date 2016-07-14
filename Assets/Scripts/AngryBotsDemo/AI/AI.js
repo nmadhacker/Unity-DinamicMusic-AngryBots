@@ -2,7 +2,6 @@
 
 // Public member data
 public var behaviourOnSpotted : MonoBehaviour;
-public var soundOnSpotted : AudioClip;
 public var behaviourOnLostTrack : MonoBehaviour;
 
 // Private memeber data
@@ -44,11 +43,6 @@ function OnSpotted () {
 		behaviourOnLostTrack.enabled = false;
 
 		wwiseReceiver.SendMessage("OnPlay");
-
-		if (GetComponent.<AudioSource>() && soundOnSpotted) {
-			GetComponent.<AudioSource>().clip = soundOnSpotted;
-			GetComponent.<AudioSource>().Play ();
-		}
 	}
 }
 

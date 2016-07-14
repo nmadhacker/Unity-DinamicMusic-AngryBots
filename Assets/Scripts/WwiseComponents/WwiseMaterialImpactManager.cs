@@ -19,8 +19,7 @@ public class WwiseEntityFootstepSndConfig
 public class WwiseBulletHitImpact
 {
 	public PhysicMaterial physicMaterial;
-	public string bulletSndKey;
-	public string rocketSndKey;
+	public string sndKey;
 }
 
 public class WwiseMaterialImpactManager : MonoBehaviour
@@ -28,18 +27,26 @@ public class WwiseMaterialImpactManager : MonoBehaviour
 	[Header("Entities Footstep keys")]
 	public WwiseEntityFootstepSndConfig[] footstepEntityKeys;
 	public WwiseFootstepMaterialImpact[] footstepMaterials;
+
+	[Header("Bullet Hits Keys")]
+	public string bulletHitEventKey;
 	public WwiseBulletHitImpact[] bulletHitMaterials;
 
 	private static Dictionary<PhysicMaterial, string> footSndDict;
+	private static Dictionary<PhysicMaterial, string> bulletHitDict;
 	private static Dictionary<WwiseFootstepHandler.FootType,string> entityDict; 
 
 	private static WwiseFootstepMaterialImpact defaultMat;
 	private static WwiseEntityFootstepSndConfig defaultEntity;
+	private static WwiseBulletHitImpact defaultImpact;
+	private static string static_bulletHitEventKey;
 
 	void Awake()
 	{
 		defaultMat = footstepMaterials[0];
 		defaultEntity = footstepEntityKeys[0];
+		defaultImpact = bulletHitMaterials[0];
+		static_bulletHitEventKey = bulletHitEventKey;
 
 		footSndDict = new Dictionary<PhysicMaterial, string> ();
 		for (var i = 0; i < footstepMaterials.Length; i++) {
@@ -50,6 +57,11 @@ public class WwiseMaterialImpactManager : MonoBehaviour
 		for(var i = 0; i < footstepEntityKeys.Length; ++i) {
 			entityDict[footstepEntityKeys[i].footType] = footstepEntityKeys[i].sndEventKey;
 		}
+
+		bulletHitDict = new Dictionary<PhysicMaterial, string>();
+		for(var i = 0; i < bulletHitMaterials.Length; ++i ) {
+			bulletHitDict[bulletHitMaterials[i].physicMaterial] = bulletHitMaterials[i].sndKey;
+		}
 	}
 
 	public static void TriggerFootstepSound(WwiseFootstepHandler.FootType footType, PhysicMaterial mat, GameObject source)
@@ -58,6 +70,13 @@ public class WwiseMaterialImpactManager : MonoBehaviour
 		string switchKey = GeFootsteptMaterialImpact(mat);
 		AkSoundEngine.SetSwitch("Footstep_material",switchKey,source);
 		AkSoundEngine.PostEvent(eventKey,source);
+	}
+
+	public static void TriggerBulletHitSound(PhysicMaterial mat, GameObject source)
+	{
+		string switchKey = GetBulletImpactMaterialImpact(mat);
+		AkSoundEngine.SetSwitch("bullethit_material",switchKey,source);
+		AkSoundEngine.PostEvent(static_bulletHitEventKey,source);
 	}
 
 	static string GetEntityEventKey(WwiseFootstepHandler.FootType entityType)
@@ -73,5 +92,12 @@ public class WwiseMaterialImpactManager : MonoBehaviour
 		if (mat && footSndDict.ContainsKey (mat))
 			return footSndDict[mat];
 		return defaultMat.sndKey;
+	}
+
+	static string GetBulletImpactMaterialImpact(PhysicMaterial mat)
+	{
+		if (mat && bulletHitDict.ContainsKey(mat))
+			return bulletHitDict[mat];
+		return defaultImpact.sndKey;
 	}
 }

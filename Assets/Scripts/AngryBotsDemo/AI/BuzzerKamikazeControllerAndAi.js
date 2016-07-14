@@ -3,7 +3,6 @@
 // Public member data
 public var motor : MovementMotor;
 public var electricArc : LineRenderer;
-public var zapSound : AudioClip;
 public var damageAmount : float = 5.0f;
 
 private var player : Transform;
@@ -13,7 +12,6 @@ private var startTime : float;
 private var threatRange : boolean = false;
 private var direction : Vector3;
 private var rechargeTimer : float = 1.0f;
-private var audioSource : AudioSource;
 private var zapNoise : Vector3 = Vector3.zero;
 
 var wwiseReceiver : GameObject;
@@ -23,7 +21,6 @@ function Awake () {
 	player = GameObject.FindWithTag ("Player").transform;
 	
 	spawnPos = character.position;
-	audioSource = GetComponent.<AudioSource> ();
 }
 
 function Start () {
@@ -67,8 +64,6 @@ function DoElectricArc () {
 	
 	wwiseReceiver.SendMessage("OnPlay");
 
-	audioSource.clip = zapSound;
-	audioSource.Play ();
 	//buzz.didChargeEffect = false;
 	
 	// Show electric arc
