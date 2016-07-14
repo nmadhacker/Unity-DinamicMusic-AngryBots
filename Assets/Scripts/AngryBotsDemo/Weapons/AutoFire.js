@@ -56,9 +56,12 @@ function Update () {
 				}
 
 				// Ricochet sound
-				bulletHitReceiver.SendMessage("SetPhysicsMaterial",hitInfo.collider.sharedMaterial);
-				bulletHitReceiver.SendMessage("SetSource",go);
-				bulletHitReceiver.SendMessage("OnBulletHit");
+				if (hitInfo.collider.sharedMaterial != null)
+				{
+					bulletHitReceiver.SendMessage("SetPhysicsMaterial",hitInfo.collider.sharedMaterial);
+					bulletHitReceiver.SendMessage("SetSource",go);
+					bulletHitReceiver.SendMessage("OnBulletHit");
+				}
 
 				bullet.dist = hitInfo.distance;
 			}
