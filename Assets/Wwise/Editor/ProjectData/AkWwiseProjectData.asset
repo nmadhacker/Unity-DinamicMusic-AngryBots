@@ -68,7 +68,7 @@ MonoBehaviour:
         ObjectType: 3
       ID: 1724675634
       Guid: 7a9521b06e2d1446a52c9947575f2147
-      maxAttenuation: 0
+      maxAttenuation: 100
     - Name: PlayBulletHitSfx
       Path: Default Work Unit\PlayBulletHitSfx
       PathAndIcons:
@@ -327,6 +327,8 @@ MonoBehaviour:
   - /Secciones 01
   - /Secciones 01/Events
   - /Secciones 01/Events/Default Work Unit
+  - /Secciones 01/Switches
+  - /Secciones 01/Switches/Default Work Unit
   m_lastPopulateTimePsrt1: 0
   m_lastPopulateTimePart2: 0
   autoPopulateEnabled: 1
