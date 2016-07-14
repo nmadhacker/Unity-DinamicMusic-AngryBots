@@ -10,7 +10,7 @@ public class GameOverGUI : MonoBehaviour
 		kMenuHeaderHeight = 26.0f,
 		kButtonWidth = 175.0f,
 		kButtonHeight = 30.0f;
-	const float
+	public const float
 		kDeathCostFactor = 100.0f,
 		kBuzzerKillPrize = 100.0f,
 		kSpiderKillPrize = 50.0f,
@@ -71,11 +71,10 @@ public class GameOverGUI : MonoBehaviour
 		Screen.lockCursor = false;
 	}
 
-
 	void CalculateScore ()
 	{
 		#if !UNITY_FLASH
-			recordedTime = (int)GameScore.GameTime;
+		recordedTime = (int)GameScore.GameTime;
 		#endif
 
 		deaths = GameScore.Deaths;
@@ -89,6 +88,23 @@ public class GameOverGUI : MonoBehaviour
 		{
 			points /= (int)(deaths * kDeathCostFactor);
 		}
+	}
+
+	public static float GetCurrentScore()
+	{
+		float deaths = GameScore.Deaths;
+		float buzzerKills = GameScore.GetKills ("KamikazeBuzzer");
+		float spiderKills = GameScore.GetKills ("EnemySpider");
+		float mechKills = GameScore.GetKills ("EnemyMech") + GameScore.GetKills ("ConfusedEnemyMech");
+
+		float points = (int)(buzzerKills * kBuzzerKillPrize + spiderKills * kSpiderKillPrize + mechKills * kMechKillPrize);
+
+		if (deaths != 0)
+		{
+			points /= (int)(deaths * kDeathCostFactor);
+		}
+
+		return points;
 	}
 
 

@@ -1,12 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-
 public class GameScore : MonoBehaviour
 {
+	public GameObject wwiseReference;
+
 	static GameScore instance;
-	
-	
+		
 	static GameScore Instance
 	{
 		get
@@ -18,23 +18,19 @@ public class GameScore : MonoBehaviour
 			
 			return instance;
 		}
-	}
-	
+	}	
 	
 	void OnApplicationQuit ()
 	{
 		instance = null;
-	}
-	
+	}	
 	
 	public string playerLayerName = "Player", enemyLayerName = "Enemies";
-	
-	
+		
 	int deaths = 0;
 	Dictionary<string, int> kills = new Dictionary<string, int> ();
 	float startTime = 0.0f;
-	
-	
+		
 	public static int Deaths
 	{
 		get
@@ -46,8 +42,7 @@ public class GameScore : MonoBehaviour
 			
 			return Instance.deaths;
 		}
-	}
-	
+	}	
 	
 	#if !UNITY_FLASH
 		public static ICollection<string> KillTypes
@@ -62,8 +57,7 @@ public class GameScore : MonoBehaviour
 				return Instance.kills.Keys;
 			}
 		}
-	#endif
-	
+	#endif	
 	
 	public static int GetKills (string type)
 	{
@@ -73,8 +67,7 @@ public class GameScore : MonoBehaviour
 		}
 		
 		return Instance.kills[type];
-	}
-	
+	}	
 	
 	public static float GameTime
 	{
@@ -88,8 +81,7 @@ public class GameScore : MonoBehaviour
 			return Time.time - Instance.startTime;
 		}
 	}
-	
-	
+		
 	public static void RegisterDeath (GameObject deadObject)
 	{
 		if (Instance == null)
@@ -110,8 +102,9 @@ public class GameScore : MonoBehaviour
 		{
 			Instance.kills[deadObject.name] = Instance.kills.ContainsKey (deadObject.name) ? Instance.kills[deadObject.name] + 1 : 1;
 		}
-	}
-	
+
+		Instance.wwiseReference.SendMessage("OnUpdateGamerScore");
+	}	
 	
 	void OnLevelWasLoaded (int level)
 	{
