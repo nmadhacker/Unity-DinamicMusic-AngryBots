@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 public class GameScore : MonoBehaviour
 {
-	public GameObject wwiseReference;
-
 	static GameScore instance;
 		
 	static GameScore Instance
@@ -102,8 +100,6 @@ public class GameScore : MonoBehaviour
 		{
 			Instance.kills[deadObject.name] = Instance.kills.ContainsKey (deadObject.name) ? Instance.kills[deadObject.name] + 1 : 1;
 		}
-
-		Instance.wwiseReference.SendMessage("OnUpdateGamerScore");
 	}	
 	
 	void OnLevelWasLoaded (int level)
