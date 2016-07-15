@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 460900}
   - 114: {fileID: 11476386}
   - 114: {fileID: 11461922}
+  - 114: {fileID: 11427236}
   m_Layer: 0
   m_Name: InitialMusicActivator
   m_TagString: Untagged
@@ -108,6 +109,23 @@ MonoBehaviour:
   decodeBank: 0
   saveDecodedBank: 0
   unloadTriggerList: 958ca0ea
+--- !u!114 &11427236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4191c792a515c0541bca8e8e38fa7bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  groupGuid: 540591a20e45a4448edbbce3d18e614f
+  valueGuid: a4d6b5c8cd534b4586519202d14b67b4
+  groupID: 1229948536
+  valueID: 438105790
 --- !u!114 &11461922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -121,10 +139,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerList: f7e1664c
   useOtherObject: 0
-  groupGuid: dabaf09322e27d4288437277ae2701f5
-  valueGuid: a3c151bc1d24a240b4894269a50fb813
-  groupID: 1021618141
-  valueID: -500876218
+  groupGuid: a609b2b6e16c1b46bc325b6e0d053cb5
+  valueGuid: e0d0770dc2561b47a7d6863ed4d25039
+  groupID: 768929368
+  valueID: 2002117580
 --- !u!114 &11476386
 MonoBehaviour:
   m_ObjectHideFlags: 1
