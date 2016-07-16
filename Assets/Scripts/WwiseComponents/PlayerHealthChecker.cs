@@ -14,8 +14,8 @@ public class PlayerHealthChecker : MonoBehaviour {
 
 	private void SetCurrentHp(float currentHp)
 	{
-		float percent = currentHp/maxHp;
-		percent *= invertValue ? -1 : 1;
+		float percent = currentHp/maxHp * 100;
+		percent *= invertValue ? -100 : 0;
 		AkSoundEngine.SetRTPCValue(GameParameter,percent);
 	}
 }
