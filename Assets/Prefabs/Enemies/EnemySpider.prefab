@@ -1818,7 +1818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17bc098941633348afa93fc7290617e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchGroup: enemy
+  switchGroup: EntityType
   switchKey: spider
   playEvent: play_proximity
   stopEvent: 
