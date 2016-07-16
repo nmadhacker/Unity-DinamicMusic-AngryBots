@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11476386}
   - 114: {fileID: 11461922}
   - 114: {fileID: 11427236}
+  - 114: {fileID: 11493720}
   m_Layer: 0
   m_Name: InitialMusicActivator
   m_TagString: Untagged
@@ -101,14 +102,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 550543eaa97c28f4f990cb59ae13335f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerList: ae8d9d44
+  triggerList: f7e1664c
   useOtherObject: 0
   valueGuid: ab7026720a22044d9636f2f182a2c22e
   bankName: InitialSoundBank
   loadAsynchronous: 0
   decodeBank: 0
   saveDecodedBank: 0
-  unloadTriggerList: 958ca0ea
+  unloadTriggerList: 
 --- !u!114 &11427236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -165,6 +166,17 @@ MonoBehaviour:
   transitionDuration: 0
   m_callbackData: {fileID: 0}
   playingId: 0
+--- !u!114 &11493720
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b257cd7ce83d155428f33e195494b83c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
