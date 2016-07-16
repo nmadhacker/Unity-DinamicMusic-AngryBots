@@ -4,6 +4,7 @@
 
 private var health : Health;
 private var animationComp : Animation;
+var wwiseReceiver : GameObject;
 
 health = GetComponent.<Health> ();
 animationComp = GetComponentInChildren.<Animation> ();
@@ -24,7 +25,7 @@ function OnHacking () {
 }
 
 function OnHackingCompleted () {
-	GetComponent.<AudioSource>().Play ();
+	wwiseReceiver.SendMessage("OnPlay");
 	animationComp.Stop ();
 	enabled = false;
 }
