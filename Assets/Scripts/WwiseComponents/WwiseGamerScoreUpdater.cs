@@ -3,6 +3,8 @@ using System.Collections;
 
 public class WwiseGamerScoreUpdater : MonoBehaviour {
 
+	public float enemyCount;
+
 	public string gamerScoreKey;
 	void OnUpdateGamerScore()
 	{

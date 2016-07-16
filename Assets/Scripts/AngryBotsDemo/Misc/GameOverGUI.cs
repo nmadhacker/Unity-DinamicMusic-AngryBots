@@ -107,6 +107,13 @@ public class GameOverGUI : MonoBehaviour
 		return points;
 	}
 
+	public static int GetCurrentPlayerKills()
+	{
+		int buzzerKills = GameScore.GetKills ("KamikazeBuzzer");
+		int spiderKills = GameScore.GetKills ("EnemySpider");
+		int mechKills = GameScore.GetKills ("EnemyMech") + GameScore.GetKills ("ConfusedEnemyMech");
+		return (buzzerKills + spiderKills + mechKills);
+	}
 
 	void OnGUI ()
 	{
