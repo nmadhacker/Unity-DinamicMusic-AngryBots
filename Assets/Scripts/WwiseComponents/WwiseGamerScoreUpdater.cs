@@ -8,7 +8,7 @@ public class WwiseGamerScoreUpdater : MonoBehaviour {
 
 	void OnUpdateGamerScore()
 	{
-		int currentScore = Mathf.FloorToInt(GameOverGUI.GetCurrentScore());
+		int currentScore = Mathf.FloorToInt(GameOverGUI.GetCurrentPlayerKills());
 		float percent = currentScore * 100f / enemyCount;
 		AkSoundEngine.SetRTPCValue(gamerScoreKey,percent);
 	}
