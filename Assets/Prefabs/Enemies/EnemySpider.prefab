@@ -13,7 +13,6 @@ GameObject:
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
-  - 82: {fileID: 8200000}
   - 114: {fileID: 11400018}
   m_Layer: 9
   m_Name: EnemySpider
@@ -440,16 +439,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &181610
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 426260}
+  - 114: {fileID: 11438794}
+  m_Layer: 9
+  m_Name: ProximityAudioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: -0.98682165, z: 0, w: 0.16181195}
-  m_LocalPosition: {x: 44.11714, y: -3.957749, z: -85.057556}
+  m_LocalRotation: {x: 0, y: -0.8353312, z: 0, w: 0.5497471}
+  m_LocalPosition: {x: -16.538633, y: -0.997933, z: -118.38281}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 198.62415, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 246.69931, z: 0}
   m_Children:
   - {fileID: 400022}
   - {fileID: 400026}
@@ -679,7 +694,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 426260}
   m_Father: {fileID: 400000}
   m_RootOrder: 1
 --- !u!1002 &400027
@@ -798,6 +814,19 @@ Transform:
 --- !u!1002 &400041
 EditorExtensionImpl:
   serializedVersion: 6
+--- !u!4 &426260
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 400026}
+  m_RootOrder: 0
 --- !u!4 &442650
 Transform:
   m_ObjectHideFlags: 1
@@ -1297,85 +1326,6 @@ Rigidbody:
 --- !u!1002 &5400001
 EditorExtensionImpl:
   serializedVersion: 6
---- !u!82 &8200000
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 276dcbe5660b78e4cb1253cd4ad8d999, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.6
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 4
-  MaxDistance: 30
-  Pan2D: 0
-  rolloffMode: 2
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0.13333334
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.49382603
-      value: 0.31266546
-      inSlope: -1.2621783
-      outSlope: -1.2621783
-      tangentMode: 10
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!1002 &8200001
 EditorExtensionImpl:
   serializedVersion: 6
@@ -1589,13 +1539,13 @@ MonoBehaviour:
   proximityOfNoReturn: 0.6
   damageAmount: 20
   proximityRenderer: {fileID: 2300002}
-  audioSource: {fileID: 8200000}
   blinkComponents:
   - {fileID: 11400022}
   - {fileID: 11400024}
   blinkPlane: {fileID: 11400020}
   intentionalExplosion: {fileID: 100000, guid: 176cb82da2d4b47209bf74dccc47f86c, type: 2}
   animationBehaviour: {fileID: 11400016}
+  wwiseProximitySoundReceiver: {fileID: 181610}
 --- !u!1002 &11400001
 EditorExtensionImpl:
   serializedVersion: 6
@@ -1857,6 +1807,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 778b308a3c28aad42a1e85e48a396c4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11438794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17bc098941633348afa93fc7290617e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchGroup: enemy
+  switchKey: spider
+  playEvent: play_proximity
+  stopEvent: 
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

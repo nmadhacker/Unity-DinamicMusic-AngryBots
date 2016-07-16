@@ -11,12 +11,13 @@ public var proximityBuildupTime : float = 2.0;
 public var proximityOfNoReturn : float = 0.6;
 public var damageAmount : float = 30.0;
 public var proximityRenderer : Renderer;
-public var audioSource : AudioSource;
 public var blinkComponents : SelfIlluminationBlink[];
 public var blinkPlane : GlowPlane;
 
 public var intentionalExplosion : GameObject;
 public var animationBehaviour : MonoBehaviour;
+
+public var wwiseProximitySoundReceiver : GameObject;
 
 // Private memeber data
 private var ai : AI;
@@ -113,10 +114,9 @@ function Update () {
 	if (Time.time > lastBlinkTime + deltaBlink) {
 		lastBlinkTime = Time.time;
 		proximityRenderer.material.color = Color.red;
-		if (audioSource.enabled)
-		{
-			audioSource.Play ();
-		}
+
+		wwiseProximitySoundReceiver.SendMessage("OnPlay");
+
 		for (var comp : SelfIlluminationBlink in blinkComponents) {
 			comp.Blink ();	
 		}
