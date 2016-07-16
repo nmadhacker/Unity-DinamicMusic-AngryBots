@@ -6,7 +6,10 @@ var forwardAnim : AnimationClip;
 var backAnim : AnimationClip;
 var leftAnim : AnimationClip;
 var rightAnim : AnimationClip;
-var audioSource : AudioSource;
+
+var wwiseSkiddingAudioSource : GameObject;
+var playingSkiddingSound : boolean;
+
 var footstepSignals : SignalSender;
 var skiddingSounds : boolean;
 var footstepSounds : boolean;
@@ -93,12 +96,19 @@ function Update () {
 			GetComponent.<Animation>()[leftAnim.name].weight = 0;
 		}
 	}
-	
-	if (skiddingSounds) {
-		if (walkWeight > 0.2 && !audioSource.isPlaying)
-			audioSource.Play ();
-		else if (walkWeight < 0.2 && audioSource.isPlaying)
-			audioSource.Pause ();
+
+	if (skiddingSounds)
+	{
+		if (walkWeight > 0.2 && !playingSkiddingSound)
+		{
+			wwiseSkiddingAudioSource.SendMessage("OnPlay");
+			playingSkiddingSound = true;
+		}
+		else if (walkWeight < 0.2 && playingSkiddingSound)
+		{
+			wwiseSkiddingAudioSource.SendMessage("OnStop");
+			playingSkiddingSound = false;
+		}
 	}
 	
 	if (footstepSounds && walkWeight > 0.2) {
