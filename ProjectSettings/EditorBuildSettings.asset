@@ -10,8 +10,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AngryBots.unity
   - enabled: 1
-    path: Assets/Scenes/3-4_Birth.unity
-  - enabled: 1
-    path: Assets/Scenes/3-4_Pain.unity
-  - enabled: 1
     path: Assets/Scenes/Escape.unity
