@@ -102,7 +102,7 @@ public class GameScore : MonoBehaviour
 			Instance.kills[deadObject.name] = Instance.kills.ContainsKey (deadObject.name) ? Instance.kills[deadObject.name] + 1 : 1;
 		}
 
-		instance.wwiseReceiver.SendMessage("OnUpdateGamerScore", SendMessageOptions.DontRequireReceiver);
+		Instance.wwiseReceiver.SendMessage("OnUpdateGamerScore", SendMessageOptions.DontRequireReceiver);
 	}	
 	
 	void OnLevelWasLoaded (int level)
