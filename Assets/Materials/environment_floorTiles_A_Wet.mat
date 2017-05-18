@@ -10,90 +10,50 @@ Material:
   m_Shader: {fileID: 4800000, guid: ce15dcd0ce9554e04bd958496f4deab0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
+  disabledShaderPasses: []
   m_SavedProperties:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TexEnvs:
-      data:
-        first:
-          name: _MainTex
-        second:
-          m_Texture: {fileID: 2800000, guid: f4c14bda72e114781ac39b30b9ba8603, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Cube
-        second:
-          m_Texture: {fileID: 8900000, guid: 2f831fa105d5c49489802250d8b9d5b0, type: 2}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _2DReflect
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Normal
-        second:
-          m_Texture: {fileID: 2800000, guid: 557dbb6e806744f938826c4f12e47352, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _ReflectionTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 462f7e12ea158430f9baf947904c4065, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _FakeReflect
-        second:
-          m_Texture: {fileID: 2800000, guid: 7f630aaab214c4d1b9647dd8b764605f, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Fallback
-        second:
-          m_Texture: {fileID: 2800000, guid: 4b45db4c3e25c4a029a084059973f281, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
+    - _2DReflect:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Cube:
+        m_Texture: {fileID: 8900000, guid: 2f831fa105d5c49489802250d8b9d5b0, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FakeReflect:
+        m_Texture: {fileID: 2800000, guid: 7f630aaab214c4d1b9647dd8b764605f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Fallback:
+        m_Texture: {fileID: 2800000, guid: 4b45db4c3e25c4a029a084059973f281, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: f4c14bda72e114781ac39b30b9ba8603, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: 557dbb6e806744f938826c4f12e47352, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ReflectionTex:
+        m_Texture: {fileID: 2800000, guid: 462f7e12ea158430f9baf947904c4065, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-      data:
-        first:
-          name: _EmissionLM
-        second: 0
-      data:
-        first:
-          name: _Threshhold
-        second: 0
-      data:
-        first:
-          name: _MainTexMipBias
-        second: -1.2647059
+    - _EmissionLM: 0
+    - _MainTexMipBias: -1.2647059
+    - _Threshhold: 0
     m_Colors:
-      data:
-        first:
-          name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
-          name: _DirectionUv
-        second: {r: 1.6239693, g: 2.474164, b: 1.3, a: -1.3}
-      data:
-        first:
-          name: _TexAtlasTiling
-        second: {r: 8, g: 8, b: 6, a: 6}
-      data:
-        first:
-          name: _WetParams
-        second: {r: 0, g: 1, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DirectionUv: {r: 1.6239693, g: 2.474164, b: 1.3, a: -1.3}
+    - _TexAtlasTiling: {r: 8, g: 8, b: 6, a: 6}
+    - _WetParams: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1002 &2100001
 EditorExtensionImpl:
   serializedVersion: 6

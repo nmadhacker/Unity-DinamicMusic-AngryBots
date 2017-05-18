@@ -10,91 +10,48 @@ Material:
   m_Shader: {fileID: 4800000, guid: fe89f05264abe4e45b419314979a5c2c, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
+  disabledShaderPasses: []
   m_SavedProperties:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TexEnvs:
-      data:
-        first:
-          name: _MainTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 3985f560a012448c6aed714ac55f374f, type: 3}
-          m_Scale: {x: 1, y: -0.5}
-          m_Offset: {x: 0, y: 0.4060462}
-      data:
-        first:
-          name: _BumpMap
-        second:
-          m_Texture: {fileID: 2800000, guid: 223a5dea47c35448bab2fd2385f81039, type: 3}
-          m_Scale: {x: 1, y: -0.5}
-          m_Offset: {x: 0, y: 0.4060462}
-      data:
-        first:
-          name: _Cube
-        second:
-          m_Texture: {fileID: 8900000, guid: c0c349a36aee144f18644ce1538aa255, type: 2}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _2DReflect
-        second:
-          m_Texture: {fileID: 2800000, guid: f118120a67e7e4f588d865a4ec2ad6b4, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Normal
-        second:
-          m_Texture: {fileID: 2800000, guid: 223a5dea47c35448bab2fd2385f81039, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _PowMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
+    - _2DReflect:
+        m_Texture: {fileID: 2800000, guid: f118120a67e7e4f588d865a4ec2ad6b4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 223a5dea47c35448bab2fd2385f81039, type: 3}
+        m_Scale: {x: 1, y: -0.5}
+        m_Offset: {x: 0, y: 0.035057213}
+    - _Cube:
+        m_Texture: {fileID: 8900000, guid: c0c349a36aee144f18644ce1538aa255, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 3985f560a012448c6aed714ac55f374f, type: 3}
+        m_Scale: {x: 1, y: -0.5}
+        m_Offset: {x: 0, y: 0.035057213}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: 223a5dea47c35448bab2fd2385f81039, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PowMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-      data:
-        first:
-          name: _Shininess
-        second: 27.422604
-      data:
-        first:
-          name: _EmissionLM
-        second: 0
-      data:
-        first:
-          name: _Threshhold
-        second: 0
-      data:
-        first:
-          name: _OneMinusReflectivity
-        second: 0
+    - _EmissionLM: 0
+    - _OneMinusReflectivity: 0
+    - _Shininess: 27.422604
+    - _Threshhold: 0
     m_Colors:
-      data:
-        first:
-          name: _Color
-        second: {r: 0.42463395, g: 0.42470068, b: 0.4246097, a: 1}
-      data:
-        first:
-          name: _SpecColor
-        second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-      data:
-        first:
-          name: _SpecularColor
-        second: {r: 0.8239728, g: 0.8170976, b: 0.79053974, a: 0.8}
-      data:
-        first:
-          name: _SpecLightDir
-        second: {r: 0.5, g: 0.25, b: -0.5, a: 1}
-      data:
-        first:
-          name: _SpeColor
-        second: {r: 0.8, g: 0.8, b: 0.8, a: 0.8}
+    - _Color: {r: 0.42463395, g: 0.42470068, b: 0.4246097, a: 1}
+    - _SpeColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.8}
+    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _SpecLightDir: {r: 0.5, g: 0.25, b: -0.5, a: 1}
+    - _SpecularColor: {r: 0.8239728, g: 0.8170976, b: 0.79053974, a: 0.8}
 --- !u!1002 &2100001
 EditorExtensionImpl:
   serializedVersion: 6
