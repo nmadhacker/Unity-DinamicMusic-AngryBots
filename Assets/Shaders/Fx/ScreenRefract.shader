@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 
 Shader "AngryBots/FX/ScreenRefract" {
 	Properties {
@@ -28,7 +30,7 @@ Shader "AngryBots/FX/ScreenRefract" {
 			v2f o;
 
 			o.uv.xy = TRANSFORM_TEX(v.texcoord.xy, _MainTex);
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);	
+			o.pos = UnityObjectToClipPos (v.vertex);	
 			o.uvScreen = ComputeScreenPos (o.pos);
 			
 			return o; 

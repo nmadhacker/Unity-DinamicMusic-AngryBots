@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Upgrade NOTE: commented out 'half4 unity_LightmapST', a built-in variable
 // Upgrade NOTE: commented out 'sampler2D unity_Lightmap', a built-in variable
 
@@ -75,7 +77,7 @@ SubShader {
 		v2f_full vert (appdata_full v) 
 		{
 			v2f_full o;
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos (v.vertex);
 			o.uv = TRANSFORM_TEX(v.texcoord,_MainTex);
 			
 			o.uvLM = v.texcoord1.xy * unity_LightmapST.xy + unity_LightmapST.zw;
@@ -130,7 +132,7 @@ SubShader {
 		v2f vert (appdata_full v) 
 		{
 			v2f o;
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos (v.vertex);
 			o.uv = TRANSFORM_TEX (v.texcoord, _MainTex);
 			o.uvLM = v.texcoord1.xy * unity_LightmapST.xy + unity_LightmapST.zw;
 			o.uv2 = EthansFakeReflection (v.vertex);

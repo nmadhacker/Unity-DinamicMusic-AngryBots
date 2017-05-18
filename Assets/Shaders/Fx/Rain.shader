@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 
 Shader "AngryBots/FX/Rain" {
 	Properties {
@@ -23,7 +25,7 @@ Shader "AngryBots/FX/Rain" {
 			
 			v.vertex.yzx += v.texcoord1.xyy;
 			o.uv.xy = TRANSFORM_TEX(v.texcoord.xy, _MainTex);
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);	
+			o.pos = UnityObjectToClipPos (v.vertex);	
 						
 			return o; 
 		}

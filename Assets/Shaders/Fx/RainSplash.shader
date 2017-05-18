@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 
 Shader "AngryBots/FX/RainSplash" {
 	Properties {
@@ -34,7 +36,7 @@ Shader "AngryBots/FX/RainSplash" {
 			// animation of 6 frames:
 			o.uv.x = o.uv.x / 6 + floor(timeVal * 6) / 6;
 			
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);	
+			o.pos = UnityObjectToClipPos (v.vertex);	
 			
 			o.color = saturate(1.0 - timeVal) * _Intensity;		
 			
