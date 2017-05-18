@@ -22,7 +22,6 @@ public enum ErrorCode {
   ErrorCode_PluginExecutionInvalid,
   ErrorCode_PluginAllocationFailed,
   ErrorCode_VorbisRequireSeekTable,
-  ErrorCode_VorbisRequireSeekTableVirtual,
   ErrorCode_VorbisDecodeError,
   ErrorCode_AACDecodeError,
   ErrorCode_xWMACreateDecoderFailed,
@@ -79,15 +78,14 @@ public enum ErrorCode {
   ErrorCode_FileFormatMismatch,
   ErrorCode_CommandQueueFull,
   ErrorCode_CommandTooLarge,
-  ErrorCode_ExecuteActionOnEvent,
-  ErrorCode_StopAll,
-  ErrorCode_StopPlayingID,
-  ErrorCode_PostMIDIOnEvent,
-  ErrorCode_StopAllMIDI,
   ErrorCode_XMACreateDecoderLimitReached,
   ErrorCode_XMAStreamBufferTooSmall,
   ErrorCode_ModulatorScopeError_Inst,
   ErrorCode_ModulatorScopeError_Obj,
+  ErrorCode_SeekAfterEndOfPlaylist,
+  ErrorCode_OpusRequireSeekTable,
+  ErrorCode_OpusDecodeError,
+  ErrorCode_OpusCreateDecoderFailed,
   Num_ErrorCodes
 }
 #endif // #if ! (UNITY_DASHBOARD_WIDGET || UNITY_WEBPLAYER || UNITY_WII || UNITY_NACL || UNITY_FLASH || UNITY_BLACKBERRY) // Disable under unsupported platforms.

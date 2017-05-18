@@ -17,7 +17,8 @@ using System.Collections.Generic;
 [ExecuteInEditMode]
 public class AkEnvironmentPortal : MonoBehaviour
 {
-	public AkEnvironment[]	environments	= new AkEnvironment[2];	///The array is already sortet by position.
+	public const int MAX_ENVIRONMENTS_PER_PORTAL = 2;
+	public AkEnvironment[]	environments	= new AkEnvironment[MAX_ENVIRONMENTS_PER_PORTAL];	///The array is already sortet by position.
 																	///The first environment is on the negative side of the portal(opposite to the direction of the chosen axis)
 																	///The second environment is on the positive side of the portal
 	

@@ -48,16 +48,28 @@ public class AkEventInspector : AkBaseInspector
 
 
 		//Build a list of all supported callback type names and values
-		int[] callbacktypes				= (int[])Enum.GetValues (typeof(AkCallbackType));
-		int[] unsupportedCallbackTypes	= (int[])Enum.GetValues (typeof(AkUnsupportedCallbackType));
+		int[] callbacktypes = (int[])Enum.GetValues (typeof(AkCallbackType));
+		int[] unsupportedCallbackValues =
+		{
+			(int)AkCallbackType.AK_SpeakerVolumeMatrix,
+			(int)AkCallbackType.AK_MusicSyncAll,
+			(int)AkCallbackType.AK_CallbackBits,
+			(int)AkCallbackType.AK_EnableGetSourcePlayPosition,
+			(int)AkCallbackType.AK_EnableGetMusicPlayPosition,
+			(int)AkCallbackType.AK_EnableGetSourceStreamBuffering,
+			(int)AkCallbackType.AK_Monitoring,
+			(int)AkCallbackType.AK_AudioSourceChange,
+			(int)AkCallbackType.AK_Bank,
+			(int)AkCallbackType.AK_AudioInterruption
+		};
 
-		m_supportedCallbackFlags 	= new string[callbacktypes.Length - unsupportedCallbackTypes.Length];
-		m_supportedCallbackValues 	= new int	[callbacktypes.Length - unsupportedCallbackTypes.Length];
+		m_supportedCallbackFlags 	= new string[callbacktypes.Length - unsupportedCallbackValues.Length];
+		m_supportedCallbackValues 	= new int	[callbacktypes.Length - unsupportedCallbackValues.Length];
 
 		int index = 0;
 		for(int i = 0; i < callbacktypes.Length; i++)
 		{
-			if(!Contain(unsupportedCallbackTypes, callbacktypes[i]))
+			if(!Contain(unsupportedCallbackValues, callbacktypes[i]))
 			{
 				m_supportedCallbackFlags[index] = Enum.GetName(typeof(AkCallbackType), callbacktypes[i]).Substring(3);
 				m_supportedCallbackValues[index] = callbacktypes[i];
@@ -103,21 +115,33 @@ public class AkEventInspector : AkBaseInspector
 		GUILayout.BeginVertical ("Box");
 		{
 			bool useCallback = m_akEvent.m_callbackData != null;
+#if UNITY_5_3_OR_NEWER
+			EditorGUI.BeginChangeCheck();
+#endif
 			useCallback = EditorGUILayout.Toggle ("Use Callback: ", useCallback);
-			if(m_akEvent.m_callbackData == null && useCallback)
+#if UNITY_5_3_OR_NEWER
+			if (EditorGUI.EndChangeCheck())
+#endif
 			{
-				m_akEvent.m_callbackData = ScriptableObject.CreateInstance<AkEventCallbackData>();
+#if UNITY_5_3_OR_NEWER
+				Undo.RecordObject(target, "Use Callback Change");
+#endif
 
-				m_akEvent.m_callbackData.callbackFunc.Add(string.Empty);
-				m_akEvent.m_callbackData.callbackFlags.Add(0);
-				m_akEvent.m_callbackData.callbackGameObj.Add(null);
-			}
-			else if(!useCallback)
-			{
-				m_akEvent.m_callbackData = null;
+				if (m_akEvent.m_callbackData == null && useCallback)
+				{
+					m_akEvent.m_callbackData = ScriptableObject.CreateInstance<AkEventCallbackData>();
+
+					m_akEvent.m_callbackData.callbackFunc.Add(string.Empty);
+					m_akEvent.m_callbackData.callbackFlags.Add(0);
+					m_akEvent.m_callbackData.callbackGameObj.Add(null);
+				}
+				else if (!useCallback)
+				{
+					m_akEvent.m_callbackData = null;
+				}
 			}
 
-			if(m_akEvent.m_callbackData != null)
+			if (m_akEvent.m_callbackData != null)
 			{
 				GUILayout.Space(3);
 
@@ -131,29 +155,47 @@ public class AkEventInspector : AkBaseInspector
 
 				m_akEvent.m_callbackData.uFlags = 0;
 
-				for(int i = 0; i < m_akEvent.m_callbackData.callbackFunc.Count; i++)
+				for (int i = 0; i < m_akEvent.m_callbackData.callbackFunc.Count; i++)
 				{
 					GUILayout.BeginHorizontal();
 					{
-						m_akEvent.m_callbackData.callbackGameObj[i]	= (GameObject)EditorGUILayout.ObjectField(m_akEvent.m_callbackData.callbackGameObj[i], typeof(GameObject), true); 
-						m_akEvent.m_callbackData.callbackFunc[i]	= EditorGUILayout.TextField(m_akEvent.m_callbackData.callbackFunc[i]);
+#if UNITY_5_3_OR_NEWER
+						EditorGUI.BeginChangeCheck();
+#endif
+						GameObject gameObj = (GameObject)EditorGUILayout.ObjectField(m_akEvent.m_callbackData.callbackGameObj[i], typeof(GameObject), true);
+						string func = EditorGUILayout.TextField(m_akEvent.m_callbackData.callbackFunc[i]);
 
 						//Since some callback flags are unsupported, some bits are not used.
 						//But when using EditorGUILayout.MaskField, clicking the third flag will set the third bit to one even if the third flag in the AkCallbackType enum is unsupported.
 						//This is a problem because cliking the third supported flag would internally select the third flag in the AkCallbackType enum which is unsupported.
-						//To slove this problem we use a mask for display and another one for the actual callback
+						//To solve this problem we use a mask for display and another one for the actual callback
 						int displayMask = GetDisplayMask(m_akEvent.m_callbackData.callbackFlags[i]);
-						displayMask	= EditorGUILayout.MaskField(displayMask, m_supportedCallbackFlags);
-						m_akEvent.m_callbackData.callbackFlags[i] = GetWwiseCallbackMask(displayMask);
+						displayMask = EditorGUILayout.MaskField(displayMask, m_supportedCallbackFlags);
+						int flags = GetWwiseCallbackMask(displayMask);
 
-						 
-						if(GUILayout.Button("X"))
+#if UNITY_5_3_OR_NEWER
+						if (EditorGUI.EndChangeCheck())
+#endif
 						{
-							if( m_akEvent.m_callbackData.callbackFunc.Count == 1)
+#if UNITY_5_3_OR_NEWER
+							Undo.RecordObject(m_akEvent.m_callbackData, "Modified Callback");
+#endif
+							m_akEvent.m_callbackData.callbackGameObj[i] = gameObj;
+							m_akEvent.m_callbackData.callbackFunc[i] = func;
+							m_akEvent.m_callbackData.callbackFlags[i] = flags;
+						}
+
+						if (GUILayout.Button("X"))
+						{
+#if UNITY_5_3_OR_NEWER
+							Undo.RecordObject(m_akEvent.m_callbackData, "Remove Callback");
+#endif
+
+							if (m_akEvent.m_callbackData.callbackFunc.Count == 1)
 							{
-								m_akEvent.m_callbackData.callbackFunc[0]	= string.Empty;
-								m_akEvent.m_callbackData.callbackFlags[0]	= 0;
-								m_akEvent.m_callbackData.callbackGameObj[0]	= null;
+								m_akEvent.m_callbackData.callbackFunc[0] = string.Empty;
+								m_akEvent.m_callbackData.callbackFlags[0] = 0;
+								m_akEvent.m_callbackData.callbackGameObj[0] = null;
 
 								//Changes to the textfield string will not be picked up by the text editor if it is selected.
 								//So we remove focus from the textfield to make sure it will get updated
@@ -165,7 +207,6 @@ public class AkEventInspector : AkBaseInspector
 								m_akEvent.m_callbackData.callbackFunc.RemoveAt(i);
 								m_akEvent.m_callbackData.callbackFlags.RemoveAt(i);
 								m_akEvent.m_callbackData.callbackGameObj.RemoveAt(i);
-
 
 								GUIUtility.keyboardControl = 0;
 								GUIUtility.hotControl = 0;
@@ -182,17 +223,21 @@ public class AkEventInspector : AkBaseInspector
 
 				GUILayout.Space(3);
 
-				if(GUILayout.Button("Add"))
+				if (GUILayout.Button("Add"))
 				{
+#if UNITY_5_3_OR_NEWER
+					Undo.RecordObject(m_akEvent.m_callbackData, "Add Callback");
+#endif
+
 					m_akEvent.m_callbackData.callbackFunc.Add(string.Empty);
 					m_akEvent.m_callbackData.callbackFlags.Add(0);
 					m_akEvent.m_callbackData.callbackGameObj.Add(null);
-				}			
+				}
 
 				GUILayout.Space(3);
 			}
 		}
-		GUILayout.EndVertical ();
+		GUILayout.EndVertical();
 
 		serializedObject.ApplyModifiedProperties ();
 	}

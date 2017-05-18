@@ -91,15 +91,12 @@ public class AkAmbientInspector : AkEventInspector
 				DefaultHandles.Hidden = hideDefaultHandle;
 			}
 		}
-		else
-		{
-			if (GUILayout.Button("Hide Main Transform"))
+		else if (GUILayout.Button("Hide Main Transform"))
 			{
 				hideDefaultHandle = true;
 				DefaultHandles.Hidden = hideDefaultHandle;
 			}
 		}
-	}
 
 	public override void OnChildInspectorGUI ()
 	{
@@ -236,7 +233,11 @@ public class AkAmbientInspector : AkEventInspector
 			bool isEventUsedBeforeHandle = (Event.current.type == EventType.used);
 			
 			Handles.color = Color.green;
-			Handles.DrawCapFunction capFunc = Handles.SphereCap;
+#if UNITY_5_6_OR_NEWER
+            Handles.CapFunction capFunc = Handles.SphereHandleCap;
+#else
+            Handles.DrawCapFunction capFunc = Handles.SphereCap;
+#endif
 			Handles.ScaleValueHandle(0, pos, Quaternion.identity, handleSize, capFunc, 0);
 			
 			if (curPointIndex == i)
@@ -248,9 +249,7 @@ public class AkAmbientInspector : AkEventInspector
 			int controlIDAfterHandle = GUIUtility.GetControlID(someHashCode, FocusType.Passive);
 			bool isEventUsedByHandle = !isEventUsedBeforeHandle && (Event.current.type == EventType.used);
 			
-			if
-				((controlIDBeforeHandle < GUIUtility.hotControl &&
-				  GUIUtility.hotControl < controlIDAfterHandle) ||
+			if ((controlIDBeforeHandle < GUIUtility.hotControl && GUIUtility.hotControl < controlIDAfterHandle) ||
 				 isEventUsedByHandle)
 			{
 				curPointIndex = i;
@@ -258,13 +257,14 @@ public class AkAmbientInspector : AkEventInspector
 			
 			m_AkAmbient.multiPositionArray[i] = pos;                            
 		}                    
-		
-		
+
+#if !UNITY_5_3_OR_NEWER
 		if(GUI.changed)
 		{
 			EditorUtility.SetDirty(target);
 		}
-		
+#endif
+
 		if (m_AkAmbient.multiPositionTypeLabel == MultiPositionTypeLabel.Large_Mode)
 		{
 			Handles.BeginGUI();
@@ -352,8 +352,12 @@ public class AkAmbientInspector : AkEventInspector
 		if(Vector3.SqrMagnitude(SceneView.lastActiveSceneView.camera.transform.position - in_position) > in_radius*in_radius)
 		{
 			Handles.color = new Color(1.0f, 0.0f, 0.0f, 0.1f);
-			Handles.SphereCap(0, in_position, Quaternion.identity, in_radius*2.0f);
-		}
+#if UNITY_5_6_OR_NEWER
+            Handles.SphereHandleCap(0, in_position, Quaternion.identity, in_radius*2.0f, EventType.repaint);
+#else
+      		Handles.SphereCap(0, in_position, Quaternion.identity, in_radius*2.0f);
+#endif
+        }
 		else
 		{
 			Handles.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);

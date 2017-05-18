@@ -167,10 +167,14 @@ public class AkInitializer : MonoBehaviour
 		{
 			return;
 		}
-		
+
+#if !UNITY_SWITCH
+        AkSoundEngine.SetDecodedBankPath(GetDecodedBankFullPath());
+#endif
+
         AkSoundEngine.SetCurrentLanguage(language);
 
-#if (UNITY_ANDROID || UNITY_IOS) && ! UNITY_EDITOR
+#if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
 		AkSoundEngine.AddBasePath (	Application.persistentDataPath + Path.DirectorySeparatorChar );	
 #endif
 	

@@ -21,14 +21,6 @@ class AkSoundEnginePINVOKE {
   public static extern IntPtr CSharp_VirtualAllocHook(IntPtr jarg1, uint jarg2, uint jarg3, uint jarg4);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_VirtualFreeHook")]
   public static extern void CSharp_VirtualFreeHook(IntPtr jarg1, uint jarg2, uint jarg3);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AK_INVALID_AUX_ID_get")]
-  public static extern uint CSharp_AK_INVALID_AUX_ID_get();
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AK_INVALID_CHANNELMASK_get")]
-  public static extern uint CSharp_AK_INVALID_CHANNELMASK_get();
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AK_INVALID_OUTPUT_DEVICE_ID_get")]
-  public static extern uint CSharp_AK_INVALID_OUTPUT_DEVICE_ID_get();
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AK_MIXER_FX_SLOT_get")]
-  public static extern uint CSharp_AK_MIXER_FX_SLOT_get();
   [DllImport("AkSoundEngine", EntryPoint="CSharp_AK_SOUNDBANK_VERSION_get")]
   public static extern uint CSharp_AK_SOUNDBANK_VERSION_get();
   [DllImport("AkSoundEngine", EntryPoint="CSharp_AkExternalSourceInfo_iExternalSrcCookie_set")]
@@ -177,6 +169,10 @@ class AkSoundEnginePINVOKE {
   public static extern IntPtr CSharp_new_EnvelopePoint();
   [DllImport("AkSoundEngine", EntryPoint="CSharp_delete_EnvelopePoint")]
   public static extern void CSharp_delete_EnvelopePoint(IntPtr jarg1);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkAuxSendValueProxy_set")]
+  public static extern void CSharp_AkAuxSendValueProxy_set(IntPtr jarg1, uint jarg2, float jarg3);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_delete_AkAuxSendValueProxy")]
+  public static extern void CSharp_delete_AkAuxSendValueProxy(IntPtr jarg1);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_AK_INT_get")]
   public static extern ushort CSharp_AK_INT_get();
   [DllImport("AkSoundEngine", EntryPoint="CSharp_AK_FLOAT_get")]
@@ -391,6 +387,8 @@ class AkSoundEnginePINVOKE {
   public static extern int CSharp_DynamicSequenceStop__SWIG_2(uint jarg1);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_DynamicSequenceBreak")]
   public static extern int CSharp_DynamicSequenceBreak(uint jarg1);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_DynamicSequenceGetPauseTimes")]
+  public static extern int CSharp_DynamicSequenceGetPauseTimes(uint jarg1, out uint jarg2, out uint jarg3);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_DynamicSequenceLockPlaylist")]
   public static extern IntPtr CSharp_DynamicSequenceLockPlaylist(uint jarg1);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_DynamicSequenceUnlockPlaylist")]
@@ -875,34 +873,8 @@ class AkSoundEnginePINVOKE {
   public static extern int CSharp_Suspend__SWIG_1();
   [DllImport("AkSoundEngine", EntryPoint="CSharp_WakeupFromSuspend")]
   public static extern int CSharp_WakeupFromSuspend();
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMIDIEventCallbackInfo_midiEvent_set")]
-  public static extern void CSharp_AkMIDIEventCallbackInfo_midiEvent_set(IntPtr jarg1, IntPtr jarg2);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMIDIEventCallbackInfo_midiEvent_get")]
-  public static extern IntPtr CSharp_AkMIDIEventCallbackInfo_midiEvent_get(IntPtr jarg1);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_new_AkMIDIEventCallbackInfo")]
-  public static extern IntPtr CSharp_new_AkMIDIEventCallbackInfo();
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_delete_AkMIDIEventCallbackInfo")]
-  public static extern void CSharp_delete_AkMIDIEventCallbackInfo(IntPtr jarg1);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMusicPlaylistCallbackInfo_playlistID_set")]
-  public static extern void CSharp_AkMusicPlaylistCallbackInfo_playlistID_set(IntPtr jarg1, uint jarg2);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMusicPlaylistCallbackInfo_playlistID_get")]
-  public static extern uint CSharp_AkMusicPlaylistCallbackInfo_playlistID_get(IntPtr jarg1);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMusicPlaylistCallbackInfo_uNumPlaylistItems_set")]
-  public static extern void CSharp_AkMusicPlaylistCallbackInfo_uNumPlaylistItems_set(IntPtr jarg1, uint jarg2);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMusicPlaylistCallbackInfo_uNumPlaylistItems_get")]
-  public static extern uint CSharp_AkMusicPlaylistCallbackInfo_uNumPlaylistItems_get(IntPtr jarg1);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMusicPlaylistCallbackInfo_uPlaylistSelection_set")]
-  public static extern void CSharp_AkMusicPlaylistCallbackInfo_uPlaylistSelection_set(IntPtr jarg1, uint jarg2);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMusicPlaylistCallbackInfo_uPlaylistSelection_get")]
-  public static extern uint CSharp_AkMusicPlaylistCallbackInfo_uPlaylistSelection_get(IntPtr jarg1);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMusicPlaylistCallbackInfo_uPlaylistItemDone_set")]
-  public static extern void CSharp_AkMusicPlaylistCallbackInfo_uPlaylistItemDone_set(IntPtr jarg1, uint jarg2);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMusicPlaylistCallbackInfo_uPlaylistItemDone_get")]
-  public static extern uint CSharp_AkMusicPlaylistCallbackInfo_uPlaylistItemDone_get(IntPtr jarg1);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_new_AkMusicPlaylistCallbackInfo")]
-  public static extern IntPtr CSharp_new_AkMusicPlaylistCallbackInfo();
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_delete_AkMusicPlaylistCallbackInfo")]
-  public static extern void CSharp_delete_AkMusicPlaylistCallbackInfo(IntPtr jarg1);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_GetBufferTick")]
+  public static extern uint CSharp_GetBufferTick();
   [DllImport("AkSoundEngine", EntryPoint="CSharp_AkSegmentInfo_iCurrentPosition_set")]
   public static extern void CSharp_AkSegmentInfo_iCurrentPosition_set(IntPtr jarg1, int jarg2);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_AkSegmentInfo_iCurrentPosition_get")]
@@ -947,18 +919,6 @@ class AkSoundEnginePINVOKE {
   public static extern byte CSharp_AK_INVALID_MIDI_CHANNEL_get();
   [DllImport("AkSoundEngine", EntryPoint="CSharp_AK_INVALID_MIDI_NOTE_get")]
   public static extern byte CSharp_AK_INVALID_MIDI_NOTE_get();
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMIDIEvent_byType_set")]
-  public static extern void CSharp_AkMIDIEvent_byType_set(IntPtr jarg1, byte jarg2);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMIDIEvent_byType_get")]
-  public static extern byte CSharp_AkMIDIEvent_byType_get(IntPtr jarg1);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMIDIEvent_byChan_set")]
-  public static extern void CSharp_AkMIDIEvent_byChan_set(IntPtr jarg1, byte jarg2);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMIDIEvent_byChan_get")]
-  public static extern byte CSharp_AkMIDIEvent_byChan_get(IntPtr jarg1);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_new_AkMIDIEvent")]
-  public static extern IntPtr CSharp_new_AkMIDIEvent();
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_delete_AkMIDIEvent")]
-  public static extern void CSharp_delete_AkMIDIEvent(IntPtr jarg1);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMIDIPost_uOffset_set")]
   public static extern void CSharp_AkMIDIPost_uOffset_set(IntPtr jarg1, uint jarg2);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMIDIPost_uOffset_get")]
@@ -1003,10 +963,26 @@ class AkSoundEnginePINVOKE {
   public static extern IntPtr CSharp_new_AkCallbackSerializer();
   [DllImport("AkSoundEngine", EntryPoint="CSharp_delete_AkCallbackSerializer")]
   public static extern void CSharp_delete_AkCallbackSerializer(IntPtr jarg1);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_PostCode")]
-  public static extern int CSharp_PostCode(int jarg1, int jarg2);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_PostCode__SWIG_0")]
+  public static extern int CSharp_PostCode__SWIG_0(int jarg1, int jarg2, uint jarg3, uint jarg4, uint jarg5, bool jarg6);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_PostCode__SWIG_1")]
+  public static extern int CSharp_PostCode__SWIG_1(int jarg1, int jarg2, uint jarg3, uint jarg4, uint jarg5);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_PostCode__SWIG_2")]
+  public static extern int CSharp_PostCode__SWIG_2(int jarg1, int jarg2, uint jarg3, uint jarg4);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_PostCode__SWIG_3")]
+  public static extern int CSharp_PostCode__SWIG_3(int jarg1, int jarg2, uint jarg3);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_PostCode__SWIG_4")]
+  public static extern int CSharp_PostCode__SWIG_4(int jarg1, int jarg2);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_PostString__SWIG_0")]
-  public static extern int CSharp_PostString__SWIG_0([MarshalAs(UnmanagedType.LPWStr)]string jarg1, int jarg2);
+  public static extern int CSharp_PostString__SWIG_0([MarshalAs(UnmanagedType.LPWStr)]string jarg1, int jarg2, uint jarg3, uint jarg4, uint jarg5, bool jarg6);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_PostString__SWIG_1")]
+  public static extern int CSharp_PostString__SWIG_1([MarshalAs(UnmanagedType.LPWStr)]string jarg1, int jarg2, uint jarg3, uint jarg4, uint jarg5);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_PostString__SWIG_2")]
+  public static extern int CSharp_PostString__SWIG_2([MarshalAs(UnmanagedType.LPWStr)]string jarg1, int jarg2, uint jarg3, uint jarg4);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_PostString__SWIG_3")]
+  public static extern int CSharp_PostString__SWIG_3([MarshalAs(UnmanagedType.LPWStr)]string jarg1, int jarg2, uint jarg3);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_PostString__SWIG_4")]
+  public static extern int CSharp_PostString__SWIG_4([MarshalAs(UnmanagedType.LPWStr)]string jarg1, int jarg2);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_GetTimeStamp")]
   public static extern int CSharp_GetTimeStamp();
   [DllImport("AkSoundEngine", EntryPoint="CSharp_GetNumNonZeroBits")]
@@ -1015,6 +991,10 @@ class AkSoundEnginePINVOKE {
   public static extern uint CSharp_ResolveDialogueEvent__SWIG_0(uint jarg1, [In, MarshalAs(UnmanagedType.LPArray)]uint[] jarg2, uint jarg3, uint jarg4);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_ResolveDialogueEvent__SWIG_1")]
   public static extern uint CSharp_ResolveDialogueEvent__SWIG_1(uint jarg1, [In, MarshalAs(UnmanagedType.LPArray)]uint[] jarg2, uint jarg3);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_GetDialogueEventCustomPropertyValue__SWIG_0")]
+  public static extern int CSharp_GetDialogueEventCustomPropertyValue__SWIG_0(uint jarg1, uint jarg2, out int jarg3);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_GetDialogueEventCustomPropertyValue__SWIG_1")]
+  public static extern int CSharp_GetDialogueEventCustomPropertyValue__SWIG_1(uint jarg1, uint jarg2, out float jarg3);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_AkPositioningInfo_fCenterPct_set")]
   public static extern void CSharp_AkPositioningInfo_fCenterPct_set(IntPtr jarg1, float jarg2);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_AkPositioningInfo_fCenterPct_get")]
@@ -1158,9 +1138,11 @@ class AkSoundEnginePINVOKE {
   [DllImport("AkSoundEngine", EntryPoint="CSharp_AK_SPEAKER_SETUP_CONVERT_TO_SUPPORTED")]
   public static extern void CSharp_AK_SPEAKER_SETUP_CONVERT_TO_SUPPORTED(ref uint jarg1);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_ChannelMaskToNumChannels")]
-  public static extern uint CSharp_ChannelMaskToNumChannels(uint jarg1);
+  public static extern byte CSharp_ChannelMaskToNumChannels(uint jarg1);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_ChannelMaskFromNumChannels")]
   public static extern uint CSharp_ChannelMaskFromNumChannels(uint jarg1);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_ChannelBitToIndex")]
+  public static extern byte CSharp_ChannelBitToIndex(uint jarg1, uint jarg2);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_HasSurroundChannels")]
   public static extern bool CSharp_HasSurroundChannels(uint jarg1);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_HasStrictlyOnePairOfSurroundChannels")]
@@ -1214,9 +1196,11 @@ class AkSoundEnginePINVOKE {
   [DllImport("AkSoundEngine", EntryPoint="CSharp_delete_AkChannelConfig")]
   public static extern void CSharp_delete_AkChannelConfig(IntPtr jarg1);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_AddPlayerMotionDevice__SWIG_0")]
-  public static extern int CSharp_AddPlayerMotionDevice__SWIG_0(byte jarg1, uint jarg2, uint jarg3, IntPtr jarg4);
+  public static extern int CSharp_AddPlayerMotionDevice__SWIG_0(byte jarg1, uint jarg2, uint jarg3, IntPtr jarg4, uint jarg5);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_AddPlayerMotionDevice__SWIG_1")]
-  public static extern int CSharp_AddPlayerMotionDevice__SWIG_1(byte jarg1, uint jarg2, uint jarg3);
+  public static extern int CSharp_AddPlayerMotionDevice__SWIG_1(byte jarg1, uint jarg2, uint jarg3, IntPtr jarg4);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_AddPlayerMotionDevice__SWIG_2")]
+  public static extern int CSharp_AddPlayerMotionDevice__SWIG_2(byte jarg1, uint jarg2, uint jarg3);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_RemovePlayerMotionDevice")]
   public static extern void CSharp_RemovePlayerMotionDevice(byte jarg1, uint jarg2, uint jarg3);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_SetPlayerListener")]
@@ -1375,6 +1359,8 @@ class AkSoundEnginePINVOKE {
   public static extern int CSharp_AddBasePath([MarshalAs(UnmanagedType.LPWStr)]string jarg1);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_SetGameName")]
   public static extern uint CSharp_SetGameName([MarshalAs(UnmanagedType.LPWStr)]string jarg1);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_SetDecodedBankPath")]
+  public static extern uint CSharp_SetDecodedBankPath([MarshalAs(UnmanagedType.LPWStr)]string jarg1);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_LoadAndDecodeBank")]
   public static extern int CSharp_LoadAndDecodeBank([MarshalAs(UnmanagedType.LPWStr)]string jarg1, bool jarg2, out uint jarg3);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_LoadAndDecodeBankFromMemory")]
@@ -1386,7 +1372,7 @@ class AkSoundEnginePINVOKE {
   [DllImport("AkSoundEngine", EntryPoint="CSharp_UnregisterGameObjInternal")]
   public static extern int CSharp_UnregisterGameObjInternal(int jarg1);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_SetObjectPosition")]
-  public static extern int CSharp_SetObjectPosition(uint jarg1, float jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, float jarg8, float jarg9, float jarg10);
+  public static extern int CSharp_SetObjectPosition(int jarg1, float jarg2, float jarg3, float jarg4, float jarg5, float jarg6, float jarg7, float jarg8, float jarg9, float jarg10);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_GetSourceMultiplePlayPositions")]
   public static extern int CSharp_GetSourceMultiplePlayPositions(uint jarg1, [Out, MarshalAs(UnmanagedType.LPArray)]uint[] jarg2, [Out, MarshalAs(UnmanagedType.LPArray)]uint[] jarg3, [Out, MarshalAs(UnmanagedType.LPArray)]int[] jarg4, ref uint jarg5, bool jarg6);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_SetListenerPosition")]
@@ -1400,8 +1386,8 @@ class AkSoundEnginePINVOKE {
   public static extern global::System.IntPtr CSharp_GetWindowsDeviceName(int jarg1, out uint jarg2);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_WwiseObjectID_SWIGUpcast")]
   public static extern IntPtr CSharp_WwiseObjectID_SWIGUpcast(IntPtr jarg1);
+  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkAuxSendValueProxy_SWIGUpcast")]
+  public static extern IntPtr CSharp_AkAuxSendValueProxy_SWIGUpcast(IntPtr jarg1);
   [DllImport("AkSoundEngine", EntryPoint="CSharp_Playlist_SWIGUpcast")]
-  public static extern IntPtr CSharp_Playlist_SWIGUpcast(IntPtr jarg1);
-  [DllImport("AkSoundEngine", EntryPoint="CSharp_AkMIDIPost_SWIGUpcast")]
-  public static extern IntPtr CSharp_AkMIDIPost_SWIGUpcast(IntPtr jarg1);}
+  public static extern IntPtr CSharp_Playlist_SWIGUpcast(IntPtr jarg1);}
 #endif // #if (UNITY_STANDALONE_WIN && !UNITY_EDITOR) || UNITY_EDITOR_WIN

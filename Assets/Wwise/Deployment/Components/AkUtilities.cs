@@ -17,9 +17,9 @@ public class WwiseSettings
 	public string SoundbankPath;
     public bool CreateWwiseGlobal = true;
     public bool CreateWwiseListener = true;
-    public bool OldProject = false; //True if the project dates from before integration 2013.2.8
     public string WwiseInstallationPathWindows;
     public string WwiseInstallationPathMac;
+    public bool CreatedPicker = false;
 
 	public const string WwiseSettingsFilename = "WwiseSettings.xml";
 	
@@ -27,8 +27,6 @@ public class WwiseSettings
 
     public WwiseSettings()
     {
-        //Check if this is an old project (pre-2013.2.8) to be migrated
-        OldProject = Directory.Exists(Application.dataPath + Path.DirectorySeparatorChar + "Wwise" + Path.DirectorySeparatorChar + "Deployment" + Path.DirectorySeparatorChar + "Examples" );		
     }
 
 	// Save the WwiseSettings structure to a serialized XML file
@@ -103,6 +101,8 @@ public class WwiseSettings
 
 public partial class AkUtilities
 {
+    public static bool IsMigrating = false;
+
     // Unity platform enum to Wwise soundbank reference platform name mapping.
     private static IDictionary<BuildTarget, string[]> platformMapping = new Dictionary<BuildTarget, string[]>()
     {
@@ -112,8 +112,10 @@ public partial class AkUtilities
         // { BuildTarget.WebPlayer, null },
         // { BuildTarget.WebPlayerStreamed, null },
         { BuildTarget.iOS, new string[] { "iOS" } },
+#if !UNITY_5_5_OR_NEWER
         { BuildTarget.PS3, new string[] { "PS3" } },
         { BuildTarget.XBOX360, new string[] { "Xbox360" } },
+#endif
         { BuildTarget.Android, new string[] { "Android" } },
         // { BuildTarget.StandaloneGLESEmu, null },
         { BuildTarget.StandaloneLinux, new string[] { "Linux" } },
@@ -122,7 +124,7 @@ public partial class AkUtilities
         { BuildTarget.WSAPlayer, new string[] { "Windows" } },
         { BuildTarget.StandaloneLinux64, new string[] { "Linux" } },
         { BuildTarget.StandaloneLinuxUniversal, new string[] { "Linux" } },
-        { BuildTarget.WP8Player, new string[] { "Windows" } },
+        // { BuildTarget.WP8Player, new string[] { "Windows" } },
         { BuildTarget.StandaloneOSXIntel64, new string[] { "Mac" } },
         // { BuildTarget.BlackBerry, null },
         // { BuildTarget.Tizen, null },
@@ -770,12 +772,12 @@ public partial class AkUtilities
 }
 #endif // UNITY_EDITOR
 
-/// <summary>
-/// This is based on FNVHash as used by the DataManager
-/// to assign short IDs to objects. Be sure to keep them both in sync
-/// when making changes!
-/// </summary>
-public partial class AkUtilities
+        /// <summary>
+        /// This is based on FNVHash as used by the DataManager
+        /// to assign short IDs to objects. Be sure to keep them both in sync
+        /// when making changes!
+        /// </summary>
+    public partial class AkUtilities
 {
 	public class ShortIDGenerator
 	{

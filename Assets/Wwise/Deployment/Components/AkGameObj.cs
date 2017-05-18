@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 
 [AddComponentMenu("Wwise/AkGameObj")]
-///@brief This component represents a sound emitter in your scene.  See \ref unity_use_AkGameObj. It will track its position and other game syncs such as Switches, RTPC and environment values.  You can add this to any object that will emit sound.  Note that if it is not present, Wwise will add it automatically, with the default values, to any Unity Game Object that is passed to Wwise.  
+///@brief This component represents a sound emitter in your scene. It will track its position and other game syncs such as Switches, RTPC and environment values.  You can add this to any object that will emit sound.  Note that if it is not present, Wwise will add it automatically, with the default values, to any Unity Game Object that is passed to Wwise.  
 /// \sa
 /// - \ref soundengine_gameobj
 /// - \ref soundengine_events
@@ -27,7 +27,7 @@ public class AkGameObj : MonoBehaviour
 	
 	/// Is this object affected by Environment changes?  Set to false if not affected in order to save some useless calls.  Default is true.
     public bool isEnvironmentAware = true;
-	public AkGameObjEnvironmentData m_envData = null;
+	private AkGameObjEnvironmentData m_envData = null;
 
 	/// Listener 0 by default.
 	public int listenerMask = 1; 
@@ -42,6 +42,13 @@ public class AkGameObj : MonoBehaviour
 
     void Awake()
     {			
+#if UNITY_EDITOR
+        if (AkUtilities.IsMigrating)
+        {
+            return;
+        }
+#endif
+
 		// If the object was marked as static, don't update its position to save cycles.
 #if UNITY_EDITOR
 		if (!UnityEditor.EditorApplication.isPlaying)	
@@ -81,8 +88,8 @@ public class AkGameObj : MonoBehaviour
             if (isEnvironmentAware)
             {
                 m_envData = new AkGameObjEnvironmentData();
-                //Check if this object is also an environment.
-                AddAuxSend(gameObject);
+				//Check if this object is also an environment.
+				m_envData.AddAkEnvironment(gameObject, gameObject);
             }
         }
     }
@@ -90,6 +97,12 @@ public class AkGameObj : MonoBehaviour
 	private void CheckStaticStatus()
 	{
 #if UNITY_EDITOR
+
+        if (AkUtilities.IsMigrating)
+        {
+            return;
+        }
+
 		if (gameObject != null && isStaticObject != gameObject.isStatic)
 		{
 			isStaticObject = gameObject.isStatic;
@@ -100,6 +113,13 @@ public class AkGameObj : MonoBehaviour
 	
 	void OnEnable()
 	{ 
+#if UNITY_EDITOR
+        if (AkUtilities.IsMigrating)
+        {
+            return;
+        }
+#endif
+
 		//if enabled is set to false, then the update function wont be called
 		enabled = !isStaticObject;
 	}
@@ -107,6 +127,12 @@ public class AkGameObj : MonoBehaviour
     void OnDestroy()
     {
 #if UNITY_EDITOR
+
+        if (AkUtilities.IsMigrating)
+        {
+            return;
+        }
+
 		if (!UnityEditor.EditorApplication.isPlaying)	
 		{
 			UnityEditor.EditorApplication.update -= this.CheckStaticStatus;
@@ -122,11 +148,10 @@ public class AkGameObj : MonoBehaviour
 			}
 		}
 
-#if UNITY_EDITOR	
+#if UNITY_EDITOR
 		if (UnityEditor.EditorApplication.isPlaying)
 #endif
         {
-
             if (AkSoundEngine.IsInitialized())
             {
                 AkSoundEngine.UnregisterGameObj(gameObject);
@@ -137,12 +162,24 @@ public class AkGameObj : MonoBehaviour
     void Update()
     {
 #if UNITY_EDITOR
+
+        if (AkUtilities.IsMigrating)
+        {
+            return;
+        }
+
 		if (!UnityEditor.EditorApplication.isPlaying)
 		{
 			return;
 		}
 #endif
-        if (isStaticObject)
+
+		if (isEnvironmentAware && m_envData != null)
+		{
+			m_envData.UpdateAuxSend(gameObject, transform.position);
+		}
+
+		if (isStaticObject)
 		{
 			return;
 		}
@@ -152,29 +189,24 @@ public class AkGameObj : MonoBehaviour
 
 		//Didn't move.  Do nothing.
 		if (m_posData.position == position && m_posData.forward == transform.forward && m_posData.up == transform.up)
-	        return;
+			return;
 
 		m_posData.position = position;
-		m_posData.forward = transform.forward;            
-		m_posData.up = transform.up;            
+		m_posData.forward = transform.forward;
+		m_posData.up = transform.up;
 
-	    //Update position
-            AkSoundEngine.SetObjectPosition(
-                gameObject,
-                position.x,
-                position.y,
-                position.z,
-                transform.forward.x,
-                transform.forward.y,
-                transform.forward.z,
-				transform.up.x,
-				transform.up.y,
-				transform.up.z);
-
-		if (isEnvironmentAware)
-		{
-			UpdateAuxSend();
-		}        
+		//Update position
+		AkSoundEngine.SetObjectPosition(
+			gameObject,
+			position.x,
+			position.y,
+			position.z,
+			transform.forward.x,
+			transform.forward.y,
+			transform.forward.z,
+			transform.up.x,
+			transform.up.y,
+			transform.up.z);
 	}
 	/// Gets the position including the position offset, if applyPositionOffset is enabled.
 	/// \return  The position.
@@ -187,7 +219,8 @@ public class AkGameObj : MonoBehaviour
 			
 			// Add offset to gameobject position
 			return transform.position + worldOffset;
-		}		
+		}
+
 		return transform.position;
 	}
 
@@ -195,196 +228,94 @@ public class AkGameObj : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 #if UNITY_EDITOR
+
+        if (AkUtilities.IsMigrating)
+        {
+            return;
+        }
+
 		if (!UnityEditor.EditorApplication.isPlaying)
 		{
 			return;
 		}
 #endif
 
-        if (isEnvironmentAware)
+        if (isEnvironmentAware && m_envData != null)
         {
-            AddAuxSend(other.gameObject);
-        }
-    }
-
-    void AddAuxSend(GameObject in_AuxSendObject)
-    {
-		AkEnvironmentPortal akPortal = in_AuxSendObject.GetComponent<AkEnvironmentPortal>();
-		if(akPortal != null)
-		{
-			m_envData.activePortals.Add(akPortal);
-			
-			for(int i = 0; i < akPortal.environments.Length; i++) 
-			{
-				if(akPortal.environments[i] != null)
-				{
-					//Add environment only if its not already there 
-					int index = m_envData.activeEnvironments.BinarySearch(akPortal.environments[i], AkEnvironment.s_compareByPriority);
-					if(index < 0)
-						m_envData.activeEnvironments.Insert(~index, akPortal.environments[i]);//List will still be sorted after insertion
-				}
-			}
-
-			//Update and send the auxSendArray
-			m_envData.auxSendValues = null;
-			UpdateAuxSend();
-			return;
-		}
-        
-		AkEnvironment akEnvironment = in_AuxSendObject.GetComponent<AkEnvironment>();
-		if (akEnvironment != null)
-        {
-			//Add environment only if its not already there 
-			int index = m_envData.activeEnvironments.BinarySearch(akEnvironment, AkEnvironment.s_compareByPriority);
-			if(index < 0)
-			{
-				m_envData.activeEnvironments.Insert(~index, akEnvironment);//List will still be sorted after insertion
-
-				//Update only if the environment was inserted.
-				//If it wasn't inserted, it means we're inside a portal so we dont update because portals have a highter priority than environments
-				m_envData.auxSendValues = null;
-				UpdateAuxSend();
-			}
+			m_envData.AddAkEnvironment(other.gameObject, gameObject);
         }
     }
 
     void OnTriggerExit(Collider other)
     {
 #if UNITY_EDITOR
+
+        if (AkUtilities.IsMigrating)
+        {
+            return;
+        }
+
 		if (!UnityEditor.EditorApplication.isPlaying)
 		{
 			return;
 		}
 #endif
 
-        if (isEnvironmentAware)
+        if (isEnvironmentAware && m_envData != null)
         {
-			AkEnvironmentPortal akPortal = other.gameObject.GetComponent<AkEnvironmentPortal>();
-			if(akPortal != null)
-			{
-				for(int i = 0; i < akPortal.environments.Length; i++)
-				{
-					if(akPortal.environments[i] != null)
-					{
-						//We just exited a portal so we remove its environments only if we're not inside of them
-						if(!m_Collider.bounds.Intersects(akPortal.environments[i].GetCollider().bounds))
-						{
-							m_envData.activeEnvironments.Remove(akPortal.environments[i]);
-						}
-					}
-				}
-				//remove the portal
-				m_envData.activePortals.Remove(akPortal);
-
-				//Update and send the auxSendArray
-				m_envData.auxSendValues = null;
-				UpdateAuxSend();
-				return;
-			}
-
-			AkEnvironment akEnvironment = other.gameObject.GetComponent<AkEnvironment>();
-			if (akEnvironment != null)
-			{
-				//we check if the environment belongs to a portal
-				for(int i = 0; i < m_envData.activePortals.Count; i++)
-				{
-					for(int j = 0; j < m_envData.activePortals[i].environments.Length; j++)
-					{
-						if(akEnvironment == m_envData.activePortals[i].environments[j])
-						{
-							//if it belongs to a portal, then we're inside that portal and we don't remove the environment
-							m_envData.auxSendValues = null;
-							UpdateAuxSend();
-							return;
-						}
-					}
-				}
-				//if it doesn't belong to a portal, we remove it
-				m_envData.activeEnvironments.Remove(akEnvironment);
-				m_envData.auxSendValues = null;
-				UpdateAuxSend();
-				return;
-			}
+			m_envData.RemoveAkEnvironment(other.gameObject, gameObject, m_Collider);
         }
     }
-
-    void UpdateAuxSend()
-    {
-		if (m_envData.auxSendValues == null)
-        {
-#if UNITY_PS4
-			// Workaround for PS4. Marshall.FreeHGlobal crashes the game, so we need to avoid resizing the array.
-			// Allocate 4 entries right away to avoid the resize.
-            m_envData.auxSendValues = new AkAuxSendArray((uint)AkEnvironment.MAX_NB_ENVIRONMENTS);
-#else
-            m_envData.auxSendValues = new AkAuxSendArray	(	m_envData.activeEnvironments.Count < AkEnvironment.MAX_NB_ENVIRONMENTS 
-			                                      				? 
-			                                              		(uint)m_envData.activeEnvironments.Count : (uint)AkEnvironment.MAX_NB_ENVIRONMENTS
-			                                      			);
-#endif
-        }
-        else
-        {
-			m_envData.auxSendValues.Reset();
-        }
-	
-
-		//we search for MAX_NB_ENVIRONMENTS(4 at this time) environments with the hightest priority that belong to a portal and add them to the auxSendArray
-		for(int i = 0; i < m_envData.activePortals.Count; i++)
-		{
-			for(int j = 0; j < m_envData.activePortals[i].environments.Length; j++)
-			{
-				AkEnvironment env = m_envData.activePortals[i].environments[j];
-
-				if(env != null)
-				{
-					if(m_envData.activeEnvironments.BinarySearch(env, AkEnvironment.s_compareByPriority) < AkEnvironment.MAX_NB_ENVIRONMENTS)
-					{
-						m_envData.auxSendValues.Add(env.GetAuxBusID(), m_envData.activePortals[i].GetAuxSendValueForPosition(transform.position, j));
-					}
-				}
-			}
-		}
-
-		//if we still dont have MAX_NB_ENVIRONMENTS in the auxSendArray, we add the next environments with the hightest priority until we reach MAX_NB_ENVIRONMENTS
-		//or run out of environments
-		if(m_envData.auxSendValues.m_Count < AkEnvironment.MAX_NB_ENVIRONMENTS && m_envData.auxSendValues.m_Count < m_envData.activeEnvironments.Count)
-		{
-			//Make a copy of all environments
-			List<AkEnvironment> sortedEnvList = new List<AkEnvironment>(m_envData.activeEnvironments);
-
-			//sort the list with the selection algorithm 
-			sortedEnvList.Sort(AkEnvironment.s_compareBySelectionAlgorithm);
-
-			int environmentsLeft = Math.Min(AkEnvironment.MAX_NB_ENVIRONMENTS - (int)m_envData.auxSendValues.m_Count, m_envData.activeEnvironments.Count - (int)m_envData.auxSendValues.m_Count);
-
-			for(int i = 0; i < environmentsLeft; i++)
-			{
-				if(!m_envData.auxSendValues.Contains(sortedEnvList[i].GetAuxBusID()))
-				{
-					//An environment with the isDefault flag set to true is added only if its the only environment.
-					//Since an environment with the isDefault flag has the lowest priority, it will be at index zero only if there is no other environment
-					if(sortedEnvList[i].isDefault && i != 0)
-						continue;
-
-					m_envData.auxSendValues.Add(sortedEnvList[i].GetAuxBusID(), sortedEnvList[i].GetAuxSendValueForPosition(transform.position));
-
-					//No other environment can be added after an environment with the excludeOthers flag set to true
-					if(sortedEnvList[i].excludeOthers)
-						break;
-				}
-			}
-		}
-
-		AkSoundEngine.SetGameObjectAuxSendValues(gameObject, m_envData.auxSendValues, m_envData.auxSendValues.m_Count);
-    }    
 
 #if UNITY_EDITOR
 	public void OnDrawGizmosSelected()
 	{
+		if (AkUtilities.IsMigrating)
+		{
+			return;
+		}
+
 		Vector3 position = GetPosition();
 		Gizmos.DrawIcon(position, "WwiseAudioSpeaker.png", false);
 	}
 #endif
+
+	#region WwiseMigration
+
+#pragma warning disable 0414 // private field assigned but not used.
+
+	[SerializeField]
+	private AkGameObjPosOffsetData m_posOffsetData = null;
+
+#pragma warning restore 0414 // private field assigned but not used.
+
+
+#if UNITY_EDITOR
+
+	public void Migrate9()
+	{
+		Debug.Log("WwiseUnity: AkGameObj.Migrate9");
+
+		if ((listenerMask & ALL_LISTENER_MASK) == ALL_LISTENER_MASK)
+		{
+			listenerMask = 1;
+		}
+	}
+
+	public void Migrate10()
+	{
+		Debug.Log("WwiseUnity: AkGameObj.Migrate10");
+
+		if (m_posOffsetData != null)
+		{
+			m_positionOffsetData = new AkGameObjPositionOffsetData(true);
+			m_positionOffsetData.positionOffset = m_posOffsetData.positionOffset;
+			m_posOffsetData = null;
+		}
+	}
+
+#endif
+
+	#endregion
 }
 #endif // #if ! (UNITY_DASHBOARD_WIDGET || UNITY_WEBPLAYER || UNITY_WII || UNITY_NACL || UNITY_FLASH || UNITY_BLACKBERRY) // Disable under unsupported platforms.

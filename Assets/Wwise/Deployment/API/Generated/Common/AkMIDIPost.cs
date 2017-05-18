@@ -11,10 +11,12 @@
 using System;
 using System.Runtime.InteropServices;
 
-public class AkMIDIPost : AkMIDIEvent {
+public class AkMIDIPost : IDisposable {
   private IntPtr swigCPtr;
+  protected bool swigCMemOwn;
 
-  internal AkMIDIPost(IntPtr cPtr, bool cMemoryOwn) : base(AkSoundEnginePINVOKE.CSharp_AkMIDIPost_SWIGUpcast(cPtr), cMemoryOwn) {
+  internal AkMIDIPost(IntPtr cPtr, bool cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
@@ -26,7 +28,7 @@ public class AkMIDIPost : AkMIDIEvent {
     Dispose();
   }
 
-  public override void Dispose() {
+  public virtual void Dispose() {
     lock(this) {
       if (swigCPtr != IntPtr.Zero) {
         if (swigCMemOwn) {
@@ -36,7 +38,6 @@ public class AkMIDIPost : AkMIDIEvent {
         swigCPtr = IntPtr.Zero;
       }
       GC.SuppressFinalize(this);
-      base.Dispose();
     }
   }
 

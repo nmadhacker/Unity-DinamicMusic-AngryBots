@@ -79,14 +79,16 @@ public class AkBasePathGetter
 	    platformSubDir = "Windows";
 #elif UNITY_WIIU
 	    platformSubDir = "WiiUSW";
+#elif UNITY_SWITCH
+	    platformSubDir = "Switch";
 #elif UNITY_PSP2
-#if AK_ARCH_VITA_SW
+    #if AK_ARCH_VITA_SW
         platformSubDir = "VitaSW";
-#elif AK_ARCH_VITA_HW
+    #elif AK_ARCH_VITA_HW
 		platformSubDir = "VitaHW";
-#else
+    #else
 		platformSubDir = "VitaSW";
-#endif
+    #endif
 #endif
         return platformSubDir;
 	}
@@ -117,6 +119,10 @@ public class AkBasePathGetter
  		string fullBasePath = AkInitializer.GetBasePath();
 #else
         string fullBasePath = Path.Combine(Application.streamingAssetsPath, AkInitializer.GetBasePath());
+#endif
+
+#if UNITY_SWITCH
+        fullBasePath = fullBasePath.Substring(1);
 #endif
         FixSlashes(ref fullBasePath);
         return fullBasePath;
@@ -217,7 +223,11 @@ public class AkBasePathGetter
 #else
             Debug.LogError("WwiseUnity: Could not locate the SoundBanks. Did you make sure to generate them?");
 #endif
-            return string.Empty;
+
+#if !UNITY_SWITCH
+            // Switch crashes if we return an empty string here, so still return the path we found but has no SoundBanks in.
+            return String.Empty;
+#endif
         }
 
         return basePathToSet;

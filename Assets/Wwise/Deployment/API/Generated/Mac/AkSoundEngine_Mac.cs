@@ -12,34 +12,6 @@ using System;
 using System.Runtime.InteropServices;
 
 public class AkSoundEngine {
-  public static uint AK_INVALID_AUX_ID {
-    get {
-      uint ret = AkSoundEnginePINVOKE.CSharp_AK_INVALID_AUX_ID_get();
-      return ret;
-    } 
-  }
-
-  public static uint AK_INVALID_CHANNELMASK {
-    get {
-      uint ret = AkSoundEnginePINVOKE.CSharp_AK_INVALID_CHANNELMASK_get();
-      return ret;
-    } 
-  }
-
-  public static uint AK_INVALID_OUTPUT_DEVICE_ID {
-    get {
-      uint ret = AkSoundEnginePINVOKE.CSharp_AK_INVALID_OUTPUT_DEVICE_ID_get();
-      return ret;
-    } 
-  }
-
-  public static uint AK_MIXER_FX_SLOT {
-    get {
-      uint ret = AkSoundEnginePINVOKE.CSharp_AK_MIXER_FX_SLOT_get();
-      return ret;
-    } 
-  }
-
   public static uint AK_SOUNDBANK_VERSION {
     get {
       uint ret = AkSoundEnginePINVOKE.CSharp_AK_SOUNDBANK_VERSION_get();
@@ -151,7 +123,6 @@ public class AkSoundEngine {
 					// Object not active. AkGameObj will not work. Use a temporary game object.  
 					// This will automatically unregister at the end of this scope.
 					autoObject = new AkAutoObject(in_gameObject);
-					Id = autoObject.m_id;
 				}
 			}
 		}
@@ -340,6 +311,12 @@ public class AkSoundEngine {
 
   public static AKRESULT DynamicSequenceBreak(uint in_playingID) {
     AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_DynamicSequenceBreak(in_playingID);
+
+    return ret;
+  }
+
+  public static AKRESULT DynamicSequenceGetPauseTimes(uint in_playingID, out uint out_uTime, out uint out_uDuration) {
+    AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_DynamicSequenceGetPauseTimes(in_playingID, out out_uTime, out out_uDuration);
 
     return ret;
   }
@@ -1991,6 +1968,12 @@ public class AkSoundEngine {
     return ret;
   }
 
+  public static uint GetBufferTick() {
+    uint ret = AkSoundEnginePINVOKE.CSharp_GetBufferTick();
+
+    return ret;
+  }
+
   public static byte AK_INVALID_MIDI_CHANNEL {
     get {
       byte ret = AkSoundEnginePINVOKE.CSharp_AK_INVALID_MIDI_CHANNEL_get();
@@ -2019,14 +2002,98 @@ public class AkSoundEngine {
     return ret;
   }
 
+  public static AKRESULT PostCode(ErrorCode in_eError, ErrorLevel in_eErrorLevel, uint in_playingID, UnityEngine.GameObject in_gameObjID, uint in_audioNodeID, bool in_bIsBus) {
+    
+		AkAutoObject tempObj = null;   
+		uint tempin_gameObjID = (uint)AutoRegisterAkGameObj(in_gameObjID, ref tempObj);
+		
+    {
+      AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_PostCode__SWIG_0((int)in_eError, (int)in_eErrorLevel, in_playingID, tempin_gameObjID, in_audioNodeID, in_bIsBus);
+
+      return ret;
+    }
+  }
+
+  public static AKRESULT PostCode(ErrorCode in_eError, ErrorLevel in_eErrorLevel, uint in_playingID, UnityEngine.GameObject in_gameObjID, uint in_audioNodeID) {
+    
+		AkAutoObject tempObj = null;   
+		uint tempin_gameObjID = (uint)AutoRegisterAkGameObj(in_gameObjID, ref tempObj);
+		
+    {
+      AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_PostCode__SWIG_1((int)in_eError, (int)in_eErrorLevel, in_playingID, tempin_gameObjID, in_audioNodeID);
+
+      return ret;
+    }
+  }
+
+  public static AKRESULT PostCode(ErrorCode in_eError, ErrorLevel in_eErrorLevel, uint in_playingID, UnityEngine.GameObject in_gameObjID) {
+    
+		AkAutoObject tempObj = null;   
+		uint tempin_gameObjID = (uint)AutoRegisterAkGameObj(in_gameObjID, ref tempObj);
+		
+    {
+      AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_PostCode__SWIG_2((int)in_eError, (int)in_eErrorLevel, in_playingID, tempin_gameObjID);
+
+      return ret;
+    }
+  }
+
+  public static AKRESULT PostCode(ErrorCode in_eError, ErrorLevel in_eErrorLevel, uint in_playingID) {
+    AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_PostCode__SWIG_3((int)in_eError, (int)in_eErrorLevel, in_playingID);
+
+    return ret;
+  }
+
   public static AKRESULT PostCode(ErrorCode in_eError, ErrorLevel in_eErrorLevel) {
-    AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_PostCode((int)in_eError, (int)in_eErrorLevel);
+    AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_PostCode__SWIG_4((int)in_eError, (int)in_eErrorLevel);
+
+    return ret;
+  }
+
+  public static AKRESULT PostString(string in_pszError, ErrorLevel in_eErrorLevel, uint in_playingID, UnityEngine.GameObject in_gameObjID, uint in_audioNodeID, bool in_bIsBus) {
+    
+		AkAutoObject tempObj = null;   
+		uint tempin_gameObjID = (uint)AutoRegisterAkGameObj(in_gameObjID, ref tempObj);
+		
+    {
+      AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_PostString__SWIG_0(in_pszError, (int)in_eErrorLevel, in_playingID, tempin_gameObjID, in_audioNodeID, in_bIsBus);
+
+      return ret;
+    }
+  }
+
+  public static AKRESULT PostString(string in_pszError, ErrorLevel in_eErrorLevel, uint in_playingID, UnityEngine.GameObject in_gameObjID, uint in_audioNodeID) {
+    
+		AkAutoObject tempObj = null;   
+		uint tempin_gameObjID = (uint)AutoRegisterAkGameObj(in_gameObjID, ref tempObj);
+		
+    {
+      AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_PostString__SWIG_1(in_pszError, (int)in_eErrorLevel, in_playingID, tempin_gameObjID, in_audioNodeID);
+
+      return ret;
+    }
+  }
+
+  public static AKRESULT PostString(string in_pszError, ErrorLevel in_eErrorLevel, uint in_playingID, UnityEngine.GameObject in_gameObjID) {
+    
+		AkAutoObject tempObj = null;   
+		uint tempin_gameObjID = (uint)AutoRegisterAkGameObj(in_gameObjID, ref tempObj);
+		
+    {
+      AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_PostString__SWIG_2(in_pszError, (int)in_eErrorLevel, in_playingID, tempin_gameObjID);
+
+      return ret;
+    }
+  }
+
+  public static AKRESULT PostString(string in_pszError, ErrorLevel in_eErrorLevel, uint in_playingID) {
+    AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_PostString__SWIG_3(in_pszError, (int)in_eErrorLevel, in_playingID);
 
     return ret;
   }
 
   public static AKRESULT PostString(string in_pszError, ErrorLevel in_eErrorLevel) {
-    AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_PostString__SWIG_0(in_pszError, (int)in_eErrorLevel);
+    AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_PostString__SWIG_4(in_pszError, (int)in_eErrorLevel);
 
     return ret;
   }
@@ -2051,6 +2118,18 @@ public class AkSoundEngine {
 
   public static uint ResolveDialogueEvent(uint in_eventID, uint[] in_aArgumentValues, uint in_uNumArguments) {
     uint ret = AkSoundEnginePINVOKE.CSharp_ResolveDialogueEvent__SWIG_1(in_eventID, in_aArgumentValues, in_uNumArguments);
+
+    return ret;
+  }
+
+  public static AKRESULT GetDialogueEventCustomPropertyValue(uint in_eventID, uint in_uPropID, out int out_iValue) {
+    AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_GetDialogueEventCustomPropertyValue__SWIG_0(in_eventID, in_uPropID, out out_iValue);
+
+    return ret;
+  }
+
+  public static AKRESULT GetDialogueEventCustomPropertyValue(uint in_eventID, uint in_uPropID, out float out_fValue) {
+    AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_GetDialogueEventCustomPropertyValue__SWIG_1(in_eventID, in_uPropID, out out_fValue);
 
     return ret;
   }
@@ -2270,14 +2349,20 @@ public class AkSoundEngine {
 
   }
 
-  public static uint ChannelMaskToNumChannels(uint in_uChannelMask) {
-    uint ret = AkSoundEnginePINVOKE.CSharp_ChannelMaskToNumChannels(in_uChannelMask);
+  public static byte ChannelMaskToNumChannels(uint in_uChannelMask) {
+    byte ret = AkSoundEnginePINVOKE.CSharp_ChannelMaskToNumChannels(in_uChannelMask);
 
     return ret;
   }
 
   public static uint ChannelMaskFromNumChannels(uint in_uNumChannels) {
     uint ret = AkSoundEnginePINVOKE.CSharp_ChannelMaskFromNumChannels(in_uNumChannels);
+
+    return ret;
+  }
+
+  public static byte ChannelBitToIndex(uint in_uChannelBit, uint in_uChannelMask) {
+    byte ret = AkSoundEnginePINVOKE.CSharp_ChannelBitToIndex(in_uChannelBit, in_uChannelMask);
 
     return ret;
   }
@@ -2318,14 +2403,20 @@ public class AkSoundEngine {
     return ret;
   }
 
+  public static AKRESULT AddPlayerMotionDevice(byte in_iPlayerID, uint in_iCompanyID, uint in_iDeviceID, IntPtr in_pDevice, uint in_uSize) {
+    AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_AddPlayerMotionDevice__SWIG_0(in_iPlayerID, in_iCompanyID, in_iDeviceID, in_pDevice, in_uSize);
+
+    return ret;
+  }
+
   public static AKRESULT AddPlayerMotionDevice(byte in_iPlayerID, uint in_iCompanyID, uint in_iDeviceID, IntPtr in_pDevice) {
-    AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_AddPlayerMotionDevice__SWIG_0(in_iPlayerID, in_iCompanyID, in_iDeviceID, in_pDevice);
+    AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_AddPlayerMotionDevice__SWIG_1(in_iPlayerID, in_iCompanyID, in_iDeviceID, in_pDevice);
 
     return ret;
   }
 
   public static AKRESULT AddPlayerMotionDevice(byte in_iPlayerID, uint in_iCompanyID, uint in_iDeviceID) {
-    AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_AddPlayerMotionDevice__SWIG_1(in_iPlayerID, in_iCompanyID, in_iDeviceID);
+    AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_AddPlayerMotionDevice__SWIG_2(in_iPlayerID, in_iCompanyID, in_iDeviceID);
 
     return ret;
   }
@@ -2447,6 +2538,12 @@ public class AkSoundEngine {
     return ret;
   }
 
+  public static uint SetDecodedBankPath(string in_DecodedPath) {
+    uint ret = AkSoundEnginePINVOKE.CSharp_SetDecodedBankPath(in_DecodedPath);
+
+    return ret;
+  }
+
   public static AKRESULT LoadAndDecodeBank(string in_pszString, bool in_bSaveDecodedBank, out uint out_bankID) {
     AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_LoadAndDecodeBank(in_pszString, in_bSaveDecodedBank, out out_bankID);
 
@@ -2478,12 +2575,11 @@ public class AkSoundEngine {
   }
 
   public static AKRESULT SetObjectPosition(UnityEngine.GameObject in_GameObjectID, float PosX, float PosY, float PosZ, float FrontX, float FrontY, float FrontZ, float TopX, float TopY, float TopZ) {
-    
-		AkAutoObject tempObj = null;   
-		uint tempin_GameObjectID = (uint)AutoRegisterAkGameObj(in_GameObjectID, ref tempObj);
+ 
+		int Id = (in_GameObjectID != null ? (int)in_GameObjectID.GetInstanceID() : (int)AkSoundEngine.AK_INVALID_GAME_OBJECT);;
 		
     {
-      AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_SetObjectPosition(tempin_GameObjectID, PosX, PosY, PosZ, FrontX, FrontY, FrontZ, TopX, TopY, TopZ);
+      AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_SetObjectPosition(Id, PosX, PosY, PosZ, FrontX, FrontY, FrontZ, TopX, TopY, TopZ);
 
       return ret;
     }
@@ -2511,8 +2607,8 @@ public class AkSoundEngine {
   public const int AK_BUFFER_ALIGNMENT = 16;
   public const int AK_MAX_PATH = 260;
   public const int AK_BANK_PLATFORM_DATA_ALIGNMENT = (16);
+  public const int AK_INVALID_GAME_OBJECT = -1;
   public const uint AK_INVALID_PLUGINID = 0xFFFFFFFF;
-  public const uint AK_INVALID_GAME_OBJECT = 0xFFFFFFFF;
   public const uint AK_INVALID_UNIQUE_ID = 0;
   public const uint AK_INVALID_RTPC_ID = AK_INVALID_UNIQUE_ID;
   public const uint AK_INVALID_LISTENER_INDEX = 0xFFFFFFFF;
@@ -2524,6 +2620,10 @@ public class AkSoundEngine {
   public const uint AK_INVALID_FILE_ID = 0xFFFFFFFF;
   public const uint AK_INVALID_DEVICE_ID = 0xFFFFFFFF;
   public const uint AK_INVALID_BANK_ID = AK_INVALID_UNIQUE_ID;
+  public const uint AK_INVALID_AUX_ID = AK_INVALID_UNIQUE_ID;
+  public const uint AK_INVALID_CHANNELMASK = 0;
+  public const uint AK_INVALID_OUTPUT_DEVICE_ID = AK_INVALID_UNIQUE_ID;
+  public const uint AK_MIXER_FX_SLOT = 0xFFFFFFFF;
   public const uint AK_FALLBACK_ARGUMENTVALUE_ID = 0;
   public const uint AK_DEFAULT_PRIORITY = 50;
   public const uint AK_MIN_PRIORITY = 0;
@@ -2549,6 +2649,14 @@ public class AkSoundEngine {
   public const int AKCOMPANYID_IOSONO = (262);
   public const int AKCOMPANYID_AUROTECHNOLOGIES = (263);
   public const int AKCOMPANYID_DOLBY = (264);
+  public const int AKCOMPANYID_TWOBIGEARS = (265);
+  public const int AKCOMPANYID_OCULUS = (266);
+  public const int AKCOMPANYID_BLUERIPPLESOUND = (267);
+  public const int AKCOMPANYID_ENZIEN = (268);
+  public const int AKCOMPANYID_KROTOS = (269);
+  public const int AKCOMPANYID_NURULIZE = (270);
+  public const int AKCOMPANYID_SUPERPOWERED = (271);
+  public const int AKCOMPANYID_GOOGLE = (272);
   public const int AKCODECID_BANK = (0);
   public const int AKCODECID_PCM = (1);
   public const int AKCODECID_ADPCM = (2);
@@ -2565,10 +2673,12 @@ public class AkSoundEngine {
   public const int AKCODECID_PROFILERCAPTURE = (14);
   public const int AKCODECID_ANALYSISFILE = (15);
   public const int AKCODECID_MIDI = (16);
+  public const int AKCODECID_OPUS = (17);
   public const int AK_WAVE_FORMAT_VAG = 0xFFFB;
   public const int AK_WAVE_FORMAT_AT9 = 0xFFFC;
   public const int AK_WAVE_FORMAT_VORBIS = 0xFFFF;
   public const int AK_WAVE_FORMAT_AAC = 0xAAC0;
+  public const int AK_WAVE_FORMAT_OPUS = 0x3039;
   public const int WAVE_FORMAT_XMA2 = 0x166;
   public const int PANNER_NUM_STORAGE_BITS = 2;
   public const int POSSOURCE_NUM_STORAGE_BITS = 2;

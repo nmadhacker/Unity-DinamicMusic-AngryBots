@@ -22,7 +22,7 @@ using System.Collections.Generic;
 [RequireComponent (typeof(Collider))]
 public class AkEnvironment : MonoBehaviour
 {
-    public static int MAX_NB_ENVIRONMENTS = 4;
+    public const int MAX_NB_ENVIRONMENTS = 4;
 
 	public class AkEnvironment_CompareByPriority: IComparer<AkEnvironment>
     {

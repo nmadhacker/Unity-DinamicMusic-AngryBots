@@ -46,11 +46,6 @@ public class AkPositionArray : IDisposable
         m_Count = 0;
     }
 
-	public void Add(Vector3 in_Pos, Vector3 in_Forward)
-	{
-		throw new NotImplementedException("The two vector version of AkPosition is deprecated. Please add the top vector");
-	}
-	
     public void Add(Vector3 in_Pos, Vector3 in_Forward, Vector3 in_Top)
     {
         if (m_Count >= m_MaxCount)

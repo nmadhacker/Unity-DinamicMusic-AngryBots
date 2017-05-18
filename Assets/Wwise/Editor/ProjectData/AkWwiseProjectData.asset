@@ -11,206 +11,619 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f9df22e9f7b134c94d8125f326ed93, type: 3}
   m_Name: AkWwiseProjectData
   m_EditorClassIdentifier: 
-  CurrentPluginConfig: Release
+  CurrentPluginConfig: 
   EventWwu:
-  - PhysicalPath: Events\Default Work Unit.wwu
+  - PhysicalPath: Events/Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{12FB9563-18E9-4A6C-8237-06B6B2AE4F28}'
-    m_lastTimePsrt1: -246693114
-    m_lastTimePart2: -1999393871
+    m_lastTimePsrt1: -1816541568
+    m_lastTimePart2: -1999331941
     List:
-    - Name: AlertSfxPlay
-      Path: Default Work Unit\AlertSfxPlay
+    - Name: AlertSfxPlay_EntityType_Mecha
+      Path: Default Work Unit/Snd Fx/Enemy/Alert/AlertSfxPlay_EntityType_Mecha
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: AlertSfxPlay
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Enemy
+        ObjectType: 4
+      - ElementName: Alert
+        ObjectType: 4
+      - ElementName: AlertSfxPlay_EntityType_Mecha
         ObjectType: 3
-      ID: 514204912
-      Guid: 757310943fa30347a49c521821582d95
+      ID: 145396987
+      Guid: da3ddf2a8ad2b844bd2007f2805b97db
       maxAttenuation: 0
-    - Name: AlertSfxStop
-      Path: Default Work Unit\AlertSfxStop
+    - Name: AlertSfxPlay_EntityType_Spider
+      Path: Default Work Unit/Snd Fx/Enemy/Alert/AlertSfxPlay_EntityType_Spider
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: AlertSfxStop
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Enemy
+        ObjectType: 4
+      - ElementName: Alert
+        ObjectType: 4
+      - ElementName: AlertSfxPlay_EntityType_Spider
         ObjectType: 3
-      ID: -1178890094
-      Guid: 8ec9552a21c88c4e85e674b62b8e215e
+      ID: -1117776186
+      Guid: 122249111cd5aa4185dbb39230991c91
       maxAttenuation: 0
-    - Name: Play_Mech_Footstep
-      Path: Default Work Unit\Play_Mech_Footstep
+    - Name: Hack
+      Path: Default Work Unit/Snd Fx/Player/Level/Hack
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Play_Mech_Footstep
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Player
+        ObjectType: 4
+      - ElementName: Level
+        ObjectType: 4
+      - ElementName: Hack
         ObjectType: 3
-      ID: 1878728290
-      Guid: e1ab4c8fe7260c4f9b0a0fc05fe44c9b
+      ID: -409886266
+      Guid: 1649e755d38edf46ac58b753a075a641
       maxAttenuation: 0
-    - Name: Play_MechSpider_Footstep
-      Path: Default Work Unit\Play_MechSpider_Footstep
+    - Name: Play_Mech_Footstep_Catwalk_Mech
+      Path: Default Work Unit/Snd Fx/Enemy/Footstep/Play_Mech_Footstep_Catwalk_Mech
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Play_MechSpider_Footstep
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Enemy
+        ObjectType: 4
+      - ElementName: Footstep
+        ObjectType: 4
+      - ElementName: Play_Mech_Footstep_Catwalk_Mech
         ObjectType: 3
-      ID: 1752031927
-      Guid: 67f8faf82a4ef144883573c45e0884c8
+      ID: 72762180
+      Guid: 8a101a50fd07ca4ca0fa69c72bdc5cef
       maxAttenuation: 0
-    - Name: Play_Player_Footstep
-      Path: Default Work Unit\Play_Player_Footstep
+    - Name: Play_Mech_Footstep_Metal_Mech
+      Path: Default Work Unit/Snd Fx/Enemy/Footstep/Play_Mech_Footstep_Metal_Mech
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Play_Player_Footstep
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Enemy
+        ObjectType: 4
+      - ElementName: Footstep
+        ObjectType: 4
+      - ElementName: Play_Mech_Footstep_Metal_Mech
         ObjectType: 3
-      ID: 1724675634
-      Guid: 7a9521b06e2d1446a52c9947575f2147
+      ID: -249398302
+      Guid: 56356b7ef1796f4e847001742bb42d96
       maxAttenuation: 0
-    - Name: PlayBulletHitSfx
-      Path: Default Work Unit\PlayBulletHitSfx
+    - Name: Play_Mechspider_Footstep_CatWalk_Spider
+      Path: Default Work Unit/Snd Fx/Enemy/Footstep/Play_Mechspider_Footstep_CatWalk_Spider
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: PlayBulletHitSfx
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Enemy
+        ObjectType: 4
+      - ElementName: Footstep
+        ObjectType: 4
+      - ElementName: Play_Mechspider_Footstep_CatWalk_Spider
         ObjectType: 3
-      ID: -383239581
-      Guid: 3bb6d9a10748e740b4358e167c2e53f9
+      ID: 148151327
+      Guid: 14f01ef1c8c83d44b0d1791942e1a889
       maxAttenuation: 0
-    - Name: PlayCharacterDeadSfx
-      Path: Default Work Unit\PlayCharacterDeadSfx
+    - Name: Play_Mechspider_Footstep_Metal_Spider
+      Path: Default Work Unit/Snd Fx/Enemy/Footstep/Play_Mechspider_Footstep_Metal_Spider
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: PlayCharacterDeadSfx
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Enemy
+        ObjectType: 4
+      - ElementName: Footstep
+        ObjectType: 4
+      - ElementName: Play_Mechspider_Footstep_Metal_Spider
         ObjectType: 3
-      ID: 788587795
+      ID: -827635851
+      Guid: 7206cf7bd3b66b46a5ad8a1034ebd2e9
+      maxAttenuation: 0
+    - Name: Play_Player_Footstep_CatWalk_Player
+      Path: Default Work Unit/Snd Fx/Player/Footstep/Play_Player_Footstep_CatWalk_Player
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Player
+        ObjectType: 4
+      - ElementName: Footstep
+        ObjectType: 4
+      - ElementName: Play_Player_Footstep_CatWalk_Player
+        ObjectType: 3
+      ID: 566320688
+      Guid: 18158b6958a1844bb2ce70db95bedd5b
+      maxAttenuation: 0
+    - Name: Play_Player_Footstep_Metal_Player
+      Path: Default Work Unit/Snd Fx/Player/Footstep/Play_Player_Footstep_Metal_Player
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Player
+        ObjectType: 4
+      - ElementName: Footstep
+        ObjectType: 4
+      - ElementName: Play_Player_Footstep_Metal_Player
+        ObjectType: 3
+      ID: 1819084646
+      Guid: 0faa6921e8d2a743ada9acacb02a52d4
+      maxAttenuation: 0
+    - Name: play_proximity_entityType_spider
+      Path: Default Work Unit/Snd Fx/Enemy/Alert/play_proximity_entityType_spider
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Enemy
+        ObjectType: 4
+      - ElementName: Alert
+        ObjectType: 4
+      - ElementName: play_proximity_entityType_spider
+        ObjectType: 3
+      ID: -103057405
+      Guid: bebe070712c0bb439fa93b4ea0d34b72
+      maxAttenuation: 0
+    - Name: Play_Skidding_EntityType_Spider
+      Path: Default Work Unit/Snd Fx/Enemy/Movement/Play_Skidding_EntityType_Spider
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Enemy
+        ObjectType: 4
+      - ElementName: Movement
+        ObjectType: 4
+      - ElementName: Play_Skidding_EntityType_Spider
+        ObjectType: 3
+      ID: -2114405991
+      Guid: 0f74fe5ca00c3f428350999ad352211a
+      maxAttenuation: 0
+    - Name: PlayBulletHitSfx_Catwalk
+      Path: Default Work Unit/Snd Fx/Hits/PlayBulletHitSfx_Catwalk
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Hits
+        ObjectType: 4
+      - ElementName: PlayBulletHitSfx_Catwalk
+        ObjectType: 3
+      ID: 884108933
+      Guid: 048142b5ffb84c41b327c42e299caa1a
+      maxAttenuation: 0
+    - Name: PlayBulletHitSfx_Enemy
+      Path: Default Work Unit/Snd Fx/Enemy/Hits/PlayBulletHitSfx_Enemy
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Enemy
+        ObjectType: 4
+      - ElementName: Hits
+        ObjectType: 4
+      - ElementName: PlayBulletHitSfx_Enemy
+        ObjectType: 3
+      ID: 609583146
+      Guid: 958e695527aba644a80d147fade2c490
+      maxAttenuation: 0
+    - Name: PlayBulletHitSfx_Metal
+      Path: Default Work Unit/Snd Fx/Hits/PlayBulletHitSfx_Metal
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Hits
+        ObjectType: 4
+      - ElementName: PlayBulletHitSfx_Metal
+        ObjectType: 3
+      ID: 157054131
+      Guid: 129fcc71eb83f144987ac1ea53fb7856
+      maxAttenuation: 0
+    - Name: PlayCharacterDeadSfx_EntityType_Buzzer
+      Path: Default Work Unit/Snd Fx/Enemy/Explosion/PlayCharacterDeadSfx_EntityType_Buzzer
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Enemy
+        ObjectType: 4
+      - ElementName: Explosion
+        ObjectType: 4
+      - ElementName: PlayCharacterDeadSfx_EntityType_Buzzer
+        ObjectType: 3
+      ID: -1737335540
+      Guid: 646944d6257d944180262abd93f50198
+      maxAttenuation: 0
+    - Name: PlayCharacterDeadSfx_EntityType_Mecha
+      Path: Default Work Unit/Snd Fx/Enemy/Explosion/PlayCharacterDeadSfx_EntityType_Mecha
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Enemy
+        ObjectType: 4
+      - ElementName: Explosion
+        ObjectType: 4
+      - ElementName: PlayCharacterDeadSfx_EntityType_Mecha
+        ObjectType: 3
+      ID: -1657055334
+      Guid: c0e7b76444c73d4791243f500b2012c9
+      maxAttenuation: 0
+    - Name: PlayCharacterDeadSfx_EntityType_Player
+      Path: Default Work Unit/Snd Fx/Player/Dead/PlayCharacterDeadSfx_EntityType_Player
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Player
+        ObjectType: 4
+      - ElementName: Dead
+        ObjectType: 4
+      - ElementName: PlayCharacterDeadSfx_EntityType_Player
+        ObjectType: 3
+      ID: 1828631609
       Guid: db2676094556ca4a87c49bbcde0c2fcc
       maxAttenuation: 0
-    - Name: PlayCharacterHitSfx
-      Path: Default Work Unit\PlayCharacterHitSfx
+    - Name: PlayCharacterDeadSfx_EntityType_Spider
+      Path: Default Work Unit/Snd Fx/Enemy/Explosion/PlayCharacterDeadSfx_EntityType_Spider
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: PlayCharacterHitSfx
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Enemy
+        ObjectType: 4
+      - ElementName: Explosion
+        ObjectType: 4
+      - ElementName: PlayCharacterDeadSfx_EntityType_Spider
         ObjectType: 3
-      ID: 824711836
-      Guid: 0a467d606586b04992b0766eb1e8e782
+      ID: -1045479879
+      Guid: f2e41069500f9d45afcc0dc72dde9e09
       maxAttenuation: 0
-    - Name: PlayDoorClosing
-      Path: Default Work Unit\PlayDoorClosing
+    - Name: PlayCharacterDeadSfx_EntityType_Spider_Detonation
+      Path: Default Work Unit/Snd Fx/Enemy/Explosion/PlayCharacterDeadSfx_EntityType_Spider_Detonation
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: PlayDoorClosing
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Enemy
+        ObjectType: 4
+      - ElementName: Explosion
+        ObjectType: 4
+      - ElementName: PlayCharacterDeadSfx_EntityType_Spider_Detonation
         ObjectType: 3
-      ID: -67212712
-      Guid: 20c45801dd32b94fad2e937366dbc3cb
+      ID: 621494139
+      Guid: 8e000f8fa8c9434586a704a5c42ab715
       maxAttenuation: 0
-    - Name: PlayDoorOpening
-      Path: Default Work Unit\PlayDoorOpening
+    - Name: PlayCharacterHitSfx_EntityType_Player
+      Path: Default Work Unit/Snd Fx/Player/Hits/PlayCharacterHitSfx_EntityType_Player
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: PlayDoorOpening
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Player
+        ObjectType: 4
+      - ElementName: Hits
+        ObjectType: 4
+      - ElementName: PlayCharacterHitSfx_EntityType_Player
         ObjectType: 3
-      ID: 1667878897
-      Guid: ee5c43e1899c9348ab237467203de1d9
+      ID: 1902453102
+      Guid: c0d3e5138b83d7459b5d5963d6db2878
       maxAttenuation: 0
-    - Name: PlayRespawnSound
-      Path: Default Work Unit\PlayRespawnSound
+    - Name: PlayDoorClosing_DoorType_Airlock
+      Path: Default Work Unit/Snd Fx/Door/PlayDoorClosing_DoorType_Airlock
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: PlayRespawnSound
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Door
+        ObjectType: 4
+      - ElementName: PlayDoorClosing_DoorType_Airlock
         ObjectType: 3
-      ID: 1077647850
-      Guid: a03f48bd7b9dd547ba465c15f72c0873
+      ID: -961255885
+      Guid: ec8518a3c505324b9a47a72eed03fb00
+      maxAttenuation: 0
+    - Name: PlayDoorClosing_DoorType_Locked
+      Path: Default Work Unit/Snd Fx/Door/PlayDoorClosing_DoorType_Locked
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Door
+        ObjectType: 4
+      - ElementName: PlayDoorClosing_DoorType_Locked
+        ObjectType: 3
+      ID: 2116690724
+      Guid: 9f45f9b38e2dd94e95926802315b19c2
+      maxAttenuation: 0
+    - Name: PlayDoorClosing_DoorType_Normal
+      Path: Default Work Unit/Snd Fx/Door/PlayDoorClosing_DoorType_Normal
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Door
+        ObjectType: 4
+      - ElementName: PlayDoorClosing_DoorType_Normal
+        ObjectType: 3
+      ID: -494547133
+      Guid: 10f0d512f5700b4c9ab372c1e3ffffaf
+      maxAttenuation: 0
+    - Name: PlayDoorOpening_DoorType_Airlock
+      Path: Default Work Unit/Snd Fx/Door/PlayDoorOpening_DoorType_Airlock
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Door
+        ObjectType: 4
+      - ElementName: PlayDoorOpening_DoorType_Airlock
+        ObjectType: 3
+      ID: 1133615820
+      Guid: f48563679f1d8c43ae7f39600a71e135
+      maxAttenuation: 0
+    - Name: PlayDoorOpening_DoorType_Locked
+      Path: Default Work Unit/Snd Fx/Door/PlayDoorOpening_DoorType_Locked
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Door
+        ObjectType: 4
+      - ElementName: PlayDoorOpening_DoorType_Locked
+        ObjectType: 3
+      ID: -35336731
+      Guid: a2ab7311afbc7b40b25193b4516927a7
+      maxAttenuation: 0
+    - Name: PlayDoorOpening_DoorType_Normal
+      Path: Default Work Unit/Snd Fx/Door/PlayDoorOpening_DoorType_Normal
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Door
+        ObjectType: 4
+      - ElementName: PlayDoorOpening_DoorType_Normal
+        ObjectType: 3
+      ID: 873489802
+      Guid: fd949cbf5143cb468f8d9f5b68c889a7
+      maxAttenuation: 0
+    - Name: PlayEndMusic
+      Path: Default Work Unit/Music/PlayEndMusic
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Music
+        ObjectType: 4
+      - ElementName: PlayEndMusic
+        ObjectType: 3
+      ID: 1149452795
+      Guid: 62a91bcecc4c85428544e75c5d90a555
+      maxAttenuation: 0
+    - Name: PlayRespawnSound_EntityType_Player
+      Path: Default Work Unit/Snd Fx/Player/Spawn/PlayRespawnSound_EntityType_Player
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Player
+        ObjectType: 4
+      - ElementName: Spawn
+        ObjectType: 4
+      - ElementName: PlayRespawnSound_EntityType_Player
+        ObjectType: 3
+      ID: -1847425340
+      Guid: dfabfc4094a57447bcfdcc908e6a7450
       maxAttenuation: 0
     - Name: PlayStartMusic
-      Path: Default Work Unit\PlayStartMusic
+      Path: Default Work Unit/Music/PlayStartMusic
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
+      - ElementName: Music
+        ObjectType: 4
       - ElementName: PlayStartMusic
         ObjectType: 3
       ID: -60988434
       Guid: 938731ba404fad4aba90ee49df590d46
       maxAttenuation: 0
-    - Name: WeaponSfxPlay
-      Path: Default Work Unit\WeaponSfxPlay
+    - Name: Stop_Skidding_EntityType_Spider
+      Path: Default Work Unit/Snd Fx/Enemy/Movement/Stop_Skidding_EntityType_Spider
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: WeaponSfxPlay
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Enemy
+        ObjectType: 4
+      - ElementName: Movement
+        ObjectType: 4
+      - ElementName: Stop_Skidding_EntityType_Spider
         ObjectType: 3
-      ID: -1884602292
-      Guid: b01902bedbcab647a7fed33171db9b51
+      ID: -35103317
+      Guid: d08c976b743b1046b7dadea54dec2aa6
       maxAttenuation: 0
-    - Name: WeaponSfxStop
-      Path: Default Work Unit\WeaponSfxStop
+    - Name: WeaponSfxPlay_WeaponType_AutomaticGun
+      Path: Default Work Unit/Snd Fx/Player/Weapon/WeaponSfxPlay_WeaponType_AutomaticGun
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: WeaponSfxStop
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Player
+        ObjectType: 4
+      - ElementName: Weapon
+        ObjectType: 4
+      - ElementName: WeaponSfxPlay_WeaponType_AutomaticGun
         ObjectType: 3
-      ID: 85182294
-      Guid: 03655dd7270ee3428272df9d51ada082
+      ID: 360684219
+      Guid: 0790535a86e1ee4583738e7c1d83f4e9
+      maxAttenuation: 0
+    - Name: WeaponSfxPlay_WeaponType_RocketLauncher
+      Path: Default Work Unit/Snd Fx/Enemy/Weapon/WeaponSfxPlay_WeaponType_RocketLauncher
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Enemy
+        ObjectType: 4
+      - ElementName: Weapon
+        ObjectType: 4
+      - ElementName: WeaponSfxPlay_WeaponType_RocketLauncher
+        ObjectType: 3
+      ID: -327806978
+      Guid: 3c228998fe35264c972384cbe7c6b0ed
+      maxAttenuation: 0
+    - Name: WeaponSfxPlay_WeaponType_Zap
+      Path: Default Work Unit/Snd Fx/Enemy/Weapon/WeaponSfxPlay_WeaponType_Zap
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Enemy
+        ObjectType: 4
+      - ElementName: Weapon
+        ObjectType: 4
+      - ElementName: WeaponSfxPlay_WeaponType_Zap
+        ObjectType: 3
+      ID: 48221767
+      Guid: 3c4dc2d3e653044490b210dcd3d801ae
+      maxAttenuation: 0
+    - Name: WeaponSfxStop_WeaponType_AutomaticGun
+      Path: Default Work Unit/Snd Fx/Player/Weapon/WeaponSfxStop_WeaponType_AutomaticGun
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Snd Fx
+        ObjectType: 4
+      - ElementName: Player
+        ObjectType: 4
+      - ElementName: Weapon
+        ObjectType: 4
+      - ElementName: WeaponSfxStop_WeaponType_AutomaticGun
+        ObjectType: 3
+      ID: -566171687
+      Guid: c29350ce91842347a0bdcd89d12e5fe4
       maxAttenuation: 0
   AuxBusWwu:
-  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+  - PhysicalPath: Master-Mixer Hierarchy/Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{D6D71135-305E-4E25-890C-A67BC768CA67}'
-    m_lastTimePsrt1: -2068566822
-    m_lastTimePart2: -1999393888
+    m_lastTimePsrt1: -1816541568
+    m_lastTimePart2: -1999331941
     List: []
   StateWwu:
-  - PhysicalPath: States\Default Work Unit.wwu
+  - PhysicalPath: States/Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{F7E31562-96B9-4FD2-8C83-5B5E4421B622}'
-    m_lastTimePsrt1: -2069149001
-    m_lastTimePart2: -1999393888
+    m_lastTimePsrt1: -1816541568
+    m_lastTimePart2: -1999331941
     List:
-    - Name: MusicState
-      Path: Default Work Unit\MusicState
+    - Name: Environment
+      Path: Default Work Unit/Environment
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: MusicState
+      - ElementName: Environment
         ObjectType: 9
-      ID: 1021618141
-      Guid: dabaf09322e27d4288437277ae2701f5
+      ID: 1229948536
+      Guid: 540591a20e45a4448edbbce3d18e614f
+      values:
+      - Inside
+      - None
+      - Outside
+      ValueIcons:
+      - ElementName: Inside
+        ObjectType: 8
+      - ElementName: None
+        ObjectType: 8
+      - ElementName: Outside
+        ObjectType: 8
+      valueIDs: 95d0cbd3db3ba32cbef61c1a
+      ValueGuids:
+      - bytes: 57ac4690b309c746a83e0c53ec0f6ac9
+      - bytes: 61ae3d243d1df7449e0526bc6e7640a8
+      - bytes: a4d6b5c8cd534b4586519202d14b67b4
+    - Name: GamePhase
+      Path: Default Work Unit/GamePhase
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: GamePhase
+        ObjectType: 9
+      ID: 768929368
+      Guid: a609b2b6e16c1b46bc325b6e0d053cb5
       values:
       - None
-      - State_01
-      - State_02
-      - State_03
+      - Phase_01
+      - Phase_02
+      - Phase_03
+      - Phase_04
+      - Win
       ValueIcons:
       - ElementName: None
         ObjectType: 8
-      - ElementName: State_01
+      - ElementName: Phase_01
         ObjectType: 8
-      - ElementName: State_02
+      - ElementName: Phase_02
         ObjectType: 8
-      - ElementName: State_03
+      - ElementName: Phase_03
         ObjectType: 8
-      valueIDs: db3ba32c463c25e2453c25e2443c25e2
+      - ElementName: Phase_04
+        ObjectType: 8
+      - ElementName: Win
+        ObjectType: 8
+      valueIDs: db3ba32ccce35577cfe35577cee35577c9e355776d07663a
       ValueGuids:
-      - bytes: 329b822858807045a774e0b4924d263e
-      - bytes: a3c151bc1d24a240b4894269a50fb813
-      - bytes: bac91c63db06b149857ecd111a323859
-      - bytes: 4dfccf7425841a4cafa167744ad7d34f
+      - bytes: ab02634bafa9484ba02e0530d97a7a3a
+      - bytes: e0d0770dc2561b47a7d6863ed4d25039
+      - bytes: bfc6839f6ae0394bb9d92f5456cecb0d
+      - bytes: add1dfb01e341349b3a4c48b81e958dd
+      - bytes: 3253a05968502848a830c0c58ccba6e8
+      - bytes: dd5d4b532ce2fd4192eade8d1f533410
   SwitchWwu:
-  - PhysicalPath: Switches\Default Work Unit.wwu
+  - PhysicalPath: Switches/Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{A2CD2D53-3ADD-4B64-942D-F4F7CC359329}'
-    m_lastTimePsrt1: -2068171132
-    m_lastTimePart2: -1999393888
+    m_lastTimePsrt1: -1816541568
+    m_lastTimePart2: -1999331941
     List:
     - Name: DoorType
-      Path: Default Work Unit\DoorType
+      Path: Default Work Unit/DoorType
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -235,7 +648,7 @@ MonoBehaviour:
       - bytes: 78783486360738428622ff6ba571d2b9
       - bytes: cbe7750d70713a488025d8e2aa749406
     - Name: EntityType
-      Path: Default Work Unit\EntityType
+      Path: Default Work Unit/EntityType
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -264,7 +677,7 @@ MonoBehaviour:
       - bytes: a5e9a03242ea1c43a3fd73fb33f60bbe
       - bytes: 0bb24a75eb9d9a42b138c222069666d9
     - Name: Material
-      Path: Default Work Unit\Material
+      Path: Default Work Unit/Material
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -288,8 +701,37 @@ MonoBehaviour:
       - bytes: ad870e9cde9f9e4fb8306ff9e08eb70e
       - bytes: 7889b80650bd64459f05af0f77fcd7f4
       - bytes: 07a7e8fa2867784a98e6b584bb33e6ab
+    - Name: Terminal
+      Path: Default Work Unit/Terminal
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Terminal
+        ObjectType: 11
+      ID: 414380065
+      Guid: 98ee100b1fa39a4d8719545b5adbe3fb
+      values:
+      - a
+      - b
+      - c
+      - d
+      ValueIcons:
+      - ElementName: a
+        ObjectType: 10
+      - ElementName: b
+        ObjectType: 10
+      - ElementName: c
+        ObjectType: 10
+      - ElementName: d
+        ObjectType: 10
+      valueIDs: 7e5d0c057d5d0c057c5d0c057b5d0c05
+      ValueGuids:
+      - bytes: aca3e2b1442a2541a9aa728017ce44ae
+      - bytes: 1ec2c3892c57b9479b2ad77ade4eca3a
+      - bytes: ac00fae7699ada4f80291e50de95e4cc
+      - bytes: ae1bc5de45983e4f90decfe48dea5f08
     - Name: WeaponType
-      Path: Default Work Unit\WeaponType
+      Path: Default Work Unit/WeaponType
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -318,14 +760,14 @@ MonoBehaviour:
       - bytes: a53c497347730641b9e14a855beaf7dd
       - bytes: 8f1bd0b8338d3f44a38a3e230c351648
   BankWwu:
-  - PhysicalPath: SoundBanks\Default Work Unit.wwu
+  - PhysicalPath: SoundBanks/Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{3DF7DEEA-734F-4D73-B936-F06C0F205B7F}'
-    m_lastTimePsrt1: -2068075760
-    m_lastTimePart2: -1999393888
+    m_lastTimePsrt1: -1816541568
+    m_lastTimePart2: -1999331941
     List:
     - Name: InitialSoundBank
-      Path: Default Work Unit\InitialSoundBank
+      Path: Default Work Unit/InitialSoundBank
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -335,14 +777,10 @@ MonoBehaviour:
       Guid: ab7026720a22044d9636f2f182a2c22e
   ExpandedItems:
   - /Secciones 01
-  - /Secciones 01/Events
-  - /Secciones 01/Events/Default Work Unit
-  - /Secciones 01/Switches
-  - /Secciones 01/Switches/Default Work Unit
   m_lastPopulateTimePsrt1: 0
   m_lastPopulateTimePart2: 0
   autoPopulateEnabled: 1
-  basePath: Audio\GeneratedSoundBanks
+  basePath: Audio/GeneratedSoundBanks
   language: English(US)
   defaultPoolSize: 4096
   lowerPoolSize: 2048

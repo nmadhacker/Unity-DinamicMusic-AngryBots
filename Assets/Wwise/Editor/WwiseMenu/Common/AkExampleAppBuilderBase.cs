@@ -109,9 +109,10 @@ public class AkExampleAppBuilderBase : MonoBehaviour
 		else if(unityPlatormString == BuildTarget.iPhone.ToString())
 #endif
             return "iOS";
-
+#if !UNITY_5_5_OR_NEWER
         else if (unityPlatormString == BuildTarget.XBOX360.ToString())
             return "Xbox360";
+#endif
 
         //Android, PS3 and Wii have the correct strings in Wwise v2013.2.7 and Unity version 4.3.4
         return unityPlatormString;
@@ -142,13 +143,14 @@ public class AkExampleAppBuilderBase : MonoBehaviour
 #endif
             return "ipa";
 
-        else if (unityPlatormString == BuildTarget.XBOX360.ToString())
-            return "XEX";
         else if (unityPlatormString == BuildTarget.Android.ToString())
             return "apk";
+#if !UNITY_5_5_OR_NEWER
+        else if (unityPlatormString == BuildTarget.XBOX360.ToString())
+            return "XEX";
         else if (unityPlatormString == BuildTarget.PS3.ToString())
             return "self";
-
+#endif
         return "";
     }
 

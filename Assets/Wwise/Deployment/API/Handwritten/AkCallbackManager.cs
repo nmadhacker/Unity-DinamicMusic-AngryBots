@@ -75,7 +75,7 @@ static public class AkCallbackManager
         public AkCallbackType eType;    //The type of structure following
     };
     
-	/// End-of-event callback data.  Recieved at the end of an event.
+	/// End-of-event callback data.  Received at the end of an event.
 	/// \sa Ak::SoundEngine::PostEvent
 	public struct AkEventCallbackInfo
     {
@@ -159,6 +159,8 @@ static public class AkCallbackManager
         public float fDuration;             ///< Duration of the sound (unit: milliseconds )
         public float fEstimatedDuration;    ///< Estimated duration of the sound depending on source settings such as pitch. (unit: milliseconds )
         public uint audioNodeID;            ///< Audio Node ID of playing item
+        public uint mediaID;				///< Media ID of playing item. (corresponds to 'ID' attribute of 'File' element in SoundBank metadata file)
+        public bool bStreaming;				///< True if source is streaming, false otherwise.
     };
     
 	/// Music callback data
@@ -338,7 +340,7 @@ static public class AkCallbackManager
     }
 
 #if UNITY_IOS && ! UNITY_EDITOR
-    /// Call this to set a iOS callback interrution function.
+    /// Call this to set a iOS callback interruption function.
     /// By default this callback is not defined.
     static public void SetInterruptionCallback(AudioInterruptionCallback in_CB, object in_cookie)
     {
@@ -346,14 +348,14 @@ static public class AkCallbackManager
     }
 #endif // #if UNITY_IOS && ! UNITY_EDITOR
 
-    /// Call this to set a iOS callback interrution function.
+    /// Call this to set a iOS callback interruption function.
     /// By default this callback is not defined.
     static public void SetBGMCallback(BGMCallback in_CB, object in_cookie)
     {
         ms_sourceChangeCallbackPkg = new BGMCallbackPackage(in_CB, in_cookie);
     }
 
-	/// This funcition dispatches all the accumulated callbacks from the native sound engine. 
+	/// This function dispatches all the accumulated callbacks from the native sound engine. 
 	/// It must be called regularly.  By default this is called in AkInitializer.cs.
     static public int PostCallbacks()
     {
@@ -362,46 +364,28 @@ static public class AkCallbackManager
             return numCallbacks;
         
         IntPtr pData = AkCallbackSerializer.Lock();
-        if (pData == IntPtr.Zero)
+        while (pData != IntPtr.Zero)
         {
-            AkCallbackSerializer.Unlock();
-            return numCallbacks;
-        }
-        
-        AkCommonCallback commonCB;
-        commonCB.eType = 0;
-        commonCB.pPackage = IntPtr.Zero;
-        commonCB.pNext = IntPtr.Zero;
+            AkCommonCallback commonCB = new AkCommonCallback();
 
-        IntPtr callbacksStart = pData;
+            commonCB.pPackage = (IntPtr)Marshal.ReadIntPtr(pData);
+            GotoEndOfCurrentStructMember_IntPtr(ref pData);
 
-        commonCB = new AkCommonCallback();
-        
-        commonCB.pPackage = Marshal.ReadIntPtr(pData);
-        GotoEndOfCurrentStructMember_IntPtr(ref pData);
+            commonCB.pNext = (IntPtr)Marshal.ReadIntPtr(pData);
+            GotoEndOfCurrentStructMember_IntPtr(ref pData);
 
-        commonCB.pNext = Marshal.ReadIntPtr(pData);
-        GotoEndOfCurrentStructMember_IntPtr(ref pData);
-        
-        commonCB.eType = (AkCallbackType)Marshal.ReadInt32(pData);
-        GotoEndOfCurrentStructMember_EnumType<AkCallbackType>(ref pData);
-        
-        EventCallbackPackage eventPkg = null;
-        BankCallbackPackage bankPkg = null;
+            commonCB.eType = (AkCallbackType)Marshal.ReadInt32(pData);
+            GotoEndOfCurrentStructMember_EnumType<AkCallbackType>(ref pData);
 
-        if ( ! SafeExtractCallbackPackages(commonCB, out eventPkg, out bankPkg) )
+            EventCallbackPackage eventPkg = null;
+            BankCallbackPackage bankPkg = null;
+
+            if (!SafeExtractCallbackPackages(commonCB, out eventPkg, out bankPkg))
             {
                 AkCallbackSerializer.Unlock();
                 return numCallbacks;
             }
 
-        pData = callbacksStart;
-        
-        do
-        {
-            // Point to start of the next callback after commonCallback.
-            pData = (IntPtr)(pData.ToInt64() + Marshal.SizeOf(typeof(AkCommonCallback)));
-            
             if (commonCB.eType == AkCallbackType.AK_Monitoring)
             {
                 AkMonitoringMsg monitorMsg = new AkMonitoringMsg();
@@ -477,10 +461,11 @@ static public class AkCallbackManager
             }
             else
             {
-                //Get the other parameters                    
+                //Get the other parameters
                 switch (commonCB.eType)
                 {
                     case AkCallbackType.AK_EndOfEvent:
+                    case AkCallbackType.AK_MusicPlayStarted:
                         AkEventCallbackInfo eventCB = new AkEventCallbackInfo();
 
                         eventCB.pCookie = Marshal.ReadIntPtr(pData);
@@ -495,9 +480,11 @@ static public class AkCallbackManager
                         eventCB.eventID = (uint)Marshal.ReadInt32(pData);
                         GotoEndOfCurrentStructMember_ValueType<uint>(ref pData);
 
-                        if (eventPkg.m_bNotifyEndOfEvent)
+                        if (commonCB.eType != AkCallbackType.AK_EndOfEvent || eventPkg.m_bNotifyEndOfEvent)
                             eventPkg.m_Callback(eventPkg.m_Cookie, commonCB.eType, eventCB);
-                        m_mapEventCallbacks.Remove(eventPkg.GetHashCode());
+
+                        if (commonCB.eType == AkCallbackType.AK_EndOfEvent)
+                            m_mapEventCallbacks.Remove(eventPkg.GetHashCode());
                         break;
 
                     case AkCallbackType.AK_EndOfDynamicSequenceItem:
@@ -648,11 +635,16 @@ static public class AkCallbackManager
                         durInfoCB.audioNodeID = (uint)Marshal.ReadInt32(pData);
                         GotoEndOfCurrentStructMember_ValueType<uint>(ref pData);
 
+                        durInfoCB.mediaID = (uint)Marshal.ReadInt32(pData);
+                        GotoEndOfCurrentStructMember_ValueType<uint>(ref pData);
+
+                        durInfoCB.bStreaming = Convert.ToBoolean(Marshal.ReadInt32(pData));
+                        GotoEndOfCurrentStructMember_ValueType<uint>(ref pData);
+
                         eventPkg.m_Callback(eventPkg.m_Cookie, commonCB.eType, durInfoCB);
                         break;
 
                     case AkCallbackType.AK_MusicSyncUserCue:
-                    case AkCallbackType.AK_MusicPlayStarted:
                     case AkCallbackType.AK_MusicSyncBar:
                     case AkCallbackType.AK_MusicSyncBeat:
                     case AkCallbackType.AK_MusicSyncEntry:
@@ -715,39 +707,11 @@ static public class AkCallbackManager
             }
 
             numCallbacks++;
-            if (commonCB.pNext == IntPtr.Zero)
-            {
-                break;
-            }
-
-            // Note: At the end of each callback case above, pData points to either end of the callback struct, or right before the tail string member of the struct. 
             pData = commonCB.pNext;
 
-            callbacksStart = pData;
-            
-            commonCB = new AkCommonCallback();
+            // Note: At the end of each callback case above, pData points to either end of the callback struct, or right before the tail string member of the struct. 
 
-            commonCB.pPackage = (IntPtr)Marshal.ReadIntPtr(pData);
-            GotoEndOfCurrentStructMember_IntPtr(ref pData);
-            
-            commonCB.pNext = (IntPtr)Marshal.ReadIntPtr(pData);
-            GotoEndOfCurrentStructMember_IntPtr(ref pData);
-            
-            commonCB.eType = (AkCallbackType)Marshal.ReadInt32(pData);
-            GotoEndOfCurrentStructMember_EnumType<AkCallbackType>(ref pData);
-
-            eventPkg = null;
-            bankPkg = null;
-
-            if ( ! SafeExtractCallbackPackages(commonCB, out eventPkg, out bankPkg) )
-                {
-                    AkCallbackSerializer.Unlock();
-                    return numCallbacks;
-                }
-
-            pData = callbacksStart;
-            
-        } while (true);
+        };
 
         AkCallbackSerializer.Unlock();
         return numCallbacks;

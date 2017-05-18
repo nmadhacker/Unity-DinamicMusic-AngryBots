@@ -140,6 +140,18 @@ public class AkPlatformInitSettings : IDisposable {
     } 
   }
 
+  public bool bRoundFrameSizeToHWSize {
+    set {
+      AkSoundEnginePINVOKE.CSharp_AkPlatformInitSettings_bRoundFrameSizeToHWSize_set(swigCPtr, value);
+
+    } 
+    get {
+      bool ret = AkSoundEnginePINVOKE.CSharp_AkPlatformInitSettings_bRoundFrameSizeToHWSize_get(swigCPtr);
+
+      return ret;
+    } 
+  }
+
   public AkPlatformInitSettings() : this(AkSoundEnginePINVOKE.CSharp_new_AkPlatformInitSettings(), true) {
 
   }
